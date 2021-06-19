@@ -399,4 +399,4 @@ Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
 
 // Quang thành Routes
-Route::resource('/', [UserController::class]);
+Route::resource('/cart', 'CartsController');
