@@ -9,10 +9,13 @@
       <div class="row w3-res-tb">
         <div class="col-sm-5 m-b-xs">
           <select class="input-sm form-control w-sm inline v-middle">
-            <option value="0">Bulk action</option>
-            <option value="1">Delete selected</option>
-            <option value="2">Bulk edit</option>
-            <option value="3">Export</option>
+            <option value="0">Acer</option>
+            <option value="1">Hp</option>
+            <option value="2">Dell</option>
+            <option value="3">Asus</option>
+            <option value="3">MSI</option>
+            <option value="3">Samsung</option>
+            <option value="3">Apple</option>
           </select>
           <button class="btn btn-sm btn-default">Apply</button>                
         </div>
@@ -27,43 +30,46 @@
           </div>
         </div>
       </div>
+
       <div class="table-responsive">
         <table class="table table-striped b-t b-light">  
           <?php
         $message = Session::get('message');
         if($message){
-            echo '<span style="color: red ">'.$message.'</span>';
+            echo '<span style="color: red ; font-weight: bold">'.$message.'</span>';
             Session::put('message',null);
         }
         ?>         
           <thead>
             <tr>
-              <th style="width:20px;">
-                <label class="i-checks m-b-none">
-                  <input type="checkbox"><i></i>
-                </label>
-              </th>
-              <th>Tên Sản phẩm</th>
-              <th>Giá</th>
+              <th>ID</th>
               <th>Hình ảnh</th>
+              <th style="word-break: break-word; width: 230px">Tên Sản phẩm</th>
+              <th style="word-break: break-word; width: 350px ">Nội dung</th>
+              <th>Giá</th>
               <th>Danh mục</th>
               <th>Thương hiệu</th>
               <th>Số lượng</th>
               <th>Hiển thị</th>
-              <th style="width:30px;"></th>
+              <th style="width:30px;"></th>   
             </tr>
           </thead>
           <tbody>
             @foreach ($all_product as $key =>$pro)                                          
             <tr>
-              <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-              <td>{{ $pro->product_name }}</td>
-              <td>{{ $pro->product_price }}</td>
-              <td><img src="uploads/product/{{ $pro->product_image }}" height="100" width="100"></td>
-              <td>{{ $pro->category_name }}</td>
-              <td>{{ $pro->brand_name }}</td>
-              <td>{{ $pro->product_amount }}</td>
-              
+              <td>{{ $pro->product_id }}</td>
+                <td style="word-break: break-word; width: 100px ; height: 100px;" >
+                   <img src="uploads/product/{{ $pro->product_image }}" height="100" width="100">
+                   <a href="{{ URL::to('/show/'.$pro->product_id)}}">Xem thông số kỹ thuật </a> <br>
+                   <a href="{{ URL::to('/add-desc/'.$pro->product_id)}}">Thêm thông số kỹ thuật </a>
+                  
+                </td>
+              <td style="word-break: break-word; width: 230px"  >{{ $pro->product_name }}</td>
+              <td style="word-break: break-word; width: 350px">{{ $pro->product_content }}</td>
+              <td >{{ $pro->product_price }}</td>
+              <td >{{ $pro->category_name }}</td>
+              <td >{{ $pro->brand_name }}</td>
+              <td >{{ $pro->product_amount }}</td>
               <td><span class="text-ellipsis">
                 <?php
                 if($pro->product_status==0){
@@ -88,11 +94,12 @@
           </tbody>
         </table>
       </div>
+
+      
       <footer class="panel-footer">
         <div class="row">
           
           <div class="col-sm-5 text-center">
-            <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
           </div>
           <div class="col-sm-7 text-right text-center-xs">                
             <ul class="pagination pagination-sm m-t-none m-b-none">

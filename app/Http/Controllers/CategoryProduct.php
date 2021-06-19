@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CategoryRequest;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+
 class CategoryProduct extends Controller
 {
     //
@@ -17,7 +19,8 @@ class CategoryProduct extends Controller
         return view('admin_layout')->with('admin.all_category_product',$manager_category_product);
     }
 
-    public function save_category_product(Request $request){
+    public function save_category_product(CategoryRequest $request){
+        
         $data = array();
         $data['category_name'] = $request->category_product_name;
         $data['category_desc'] = $request->category_product_desc;
@@ -45,7 +48,7 @@ class CategoryProduct extends Controller
         return view('admin_layout')->with('admin.edit_category_product',$manager_category_product);
     }
 
-    public function update_category_product(Request $request,$category_product_id){
+    public function update_category_product(CategoryRequest $request,$category_product_id){
         $data=array();
         $data['category_name'] = $request->category_product_name;
         $data['category_desc'] = $request->category_product_desc;

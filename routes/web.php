@@ -26,9 +26,181 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//admin
 Route::get('admin', 'AdminController@show_admin');
-
-
 //Category
 Route::get('/add-category-product', 'CategoryProduct@add_category_product');
 Route::get('/all-category-product', 'CategoryProduct@all_category_product'); 
@@ -62,6 +234,7 @@ Route::get('/add-product', 'ProductController@add_product');
 Route::get('/all-product', 'ProductController@all_product'); 
 Route::post('/save-product', 'ProductController@save_product'); 
 
+
 Route::get('/unactive-product/{product_id}','ProductController@unactive_product'); 
 Route::get('/active-product/{product_id}','ProductController@active_product'); 
 
@@ -69,3 +242,18 @@ Route::get('/edit-product/{product_id}', 'ProductController@edit_product');
 Route::get('/delete-product/{product_id}', 'ProductController@delete_product');
 
 Route::post('/update-product/{product_id}', 'ProductController@update_product'); 
+
+// Description
+Route::get('/add-desc', 'DescriptionController@add_desc');
+Route::get('/add-desc/{product_id}', 'DescriptionController@add_desc');
+Route::get('/all-desc', 'DescriptionController@all_desc'); 
+
+Route::post('/save-desc', 'DescriptionController@save_desc'); 
+Route::get('/show/{desc_id}', 'DescriptionController@show');
+ 
+Route::get('/edit-desc/{product_id}', 'DescriptionController@edit_desc');
+Route::get('/delete-desc/{product_id}', 'DescriptionController@delete_desc');
+
+Route::post('/update-desc/{product_id}', 'DescriptionController@update_desc'); 
+
+

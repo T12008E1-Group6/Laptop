@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\BrandRequest;
 class BrandProduct extends Controller
 {
     //
@@ -18,7 +19,7 @@ class BrandProduct extends Controller
         return view('admin_layout')->with('admin.all_brand_product',$manager_brand_product);
     }
 
-    public function save_brand_product(Request $request){
+    public function save_brand_product(BrandRequest $request){
         $data = array();
         $data['brand_name'] = $request->brand_product_name;
         $data['brand_desc'] = $request->brand_product_desc;
@@ -46,7 +47,7 @@ class BrandProduct extends Controller
         return view('admin_layout')->with('admin.edit_brand_product',$manager_brand_product);
     }
 
-    public function update_brand_product(Request $request,$brand_product_id){
+    public function update_brand_product(BrandRequest $request,$brand_product_id){
         $data=array();
         $data['brand_name'] = $request->brand_product_name;
         $data['brand_desc'] = $request->brand_product_desc;
