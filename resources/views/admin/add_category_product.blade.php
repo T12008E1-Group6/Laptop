@@ -14,11 +14,21 @@
                             @csrf
                         <div class="form-group">
                             <label for="">Tên danh mục</label>
-                            <input type="text" name="category_product_name" class="form-control" id="" placeholder="Tên danh mục">
+                            <input type="text" name="category_product_name" class="form-control" value="{{ old('category_product_name')}}" >
+                            @if($errors->has('category_product_name'))
+                                <div class="error-text">
+                                    {{$errors->first('category_product_name')}}
+                                 </div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="">Mô tả danh mục</label>
-                            <textarea style="resize: none" rows="5" name="category_product_desc" class="form-control" id="" placeholder="Mô tả danh mục"></textarea>
+                            <textarea style="resize: none" rows="5" name="category_product_desc" class="form-control" value="{{ old('category_product_desc') }}"></textarea>
+                            @if($errors->has('category_product_desc'))
+                            <div class="error-text">
+                                {{$errors->first('category_product_desc')}}
+                             </div>
+                        @endif
                         </div>
                        
                         <div class="form-group">
@@ -35,7 +45,7 @@
                             <?php
                         $message = Session::get('message');
                         if($message){
-                            echo '<span style="color: red">'.$message.'</span>';
+                            echo '<span style="color: red ;font-weight: bold;">'.$message.'</span>';
                             Session::put('message',null);
                         }
                         ?>
