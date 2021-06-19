@@ -1,14 +1,12 @@
-/*
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
-*/
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
 
+.error-text {
+    color: red;
+    font-weight: bold;
+}
 a.active.styling-edit{
     font-size: 20px;
 }
@@ -20,13 +18,13 @@ span.fa-thumb-styling.fa.fa-thumbs-down {
 
 span.fa-thumb-styling.fa.fa-thumbs-up {
     font-size: 30px;
-    color:blue;
+    color:rgb(17, 17, 175);
 }
 html, body{
 	font-family: 'Roboto', sans-serif;
     font-size: 100%;
     overflow-x: hidden;
-    background: url(../images/bg.jpg) no-repeat 0px 0px;
+    background: no-repeat 0px 0px;
 	background-size:cover;
 }
 body a{
@@ -52,10 +50,11 @@ body a:hover{
 }
 	/*sidebar navigation*/
 #sidebar {
+   
     width:240px;
     height:100%;
     position:fixed;
-    background:rgba(52, 48, 48, 0.78);
+    background:white;
     -webkit-transition:all .3s ease-in-out;
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
@@ -131,7 +130,7 @@ ul.sidebar-menu {
     display:block;
 }
 ul.sidebar-menu li ul.sub li {
-    background:rgba(52, 48, 48, 0);
+    background:white;
     margin-bottom:0;
     margin-left:0;
     margin-right:0;
@@ -145,10 +144,10 @@ ul.sidebar-menu li ul.sub li a {
     -o-transition:all 0.3s ease;
     -ms-transition:all 0.3s ease;
     transition:all 0.3s ease;
-    color:#fff;
+    color:black;
 }
 ul.sidebar-menu li ul.sub li a:hover,ul.sidebar-menu li ul.sub li.active a {
-    color:#fff;
+    color:red;
     -webkit-transition:all 0.3s ease;
     -moz-transition:all 0.3s ease;
     -o-transition:all 0.3s ease;
@@ -170,7 +169,7 @@ ul.sidebar-menu li a span {
     display:inline-block;
 }
 ul.sidebar-menu li a {
-    color:#fff;
+    color:black;
     text-decoration:none;
     display:block;
     padding:18px 0 18px 25px;
@@ -184,7 +183,7 @@ ul.sidebar-menu li a {
 }
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: rgba(40, 40, 46, 0.28);
-    color: #fff;
+    color: rgb(4, 128, 4);
     display: block;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -215,7 +214,7 @@ ul.sidebar-menu li a.active i {
     transition:all .3s ease-in-out;
 }
 .footer {
-    background: #d19a98;
+    background:black;
     padding: 20px;
 }
 .footer p {
@@ -223,7 +222,7 @@ ul.sidebar-menu li a.active i {
     letter-spacing: 1px;
 }
 .footer p a {
-    color: #744e7d;
+    color: black;
 }
 .footer p a:hover {
     color: #fff;
@@ -232,13 +231,13 @@ ul.sidebar-menu li a.active i {
     left:0;
     right:0;
     z-index:1002;
-    background:rgb(240, 188, 180);
+    background: #2f7a35 ; 
     -webkit-transition:all .3s ease-in-out;
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
     transition:all .3s ease-in-out;
 }
-.merge-header {
+.merge-header { 
     margin-right:240px;
 }
 .fixed-top {
@@ -252,7 +251,7 @@ ul.sidebar-menu li a.active i {
     width:100%;
 }
 .brand {
-    background:#8b5c7e;
+    background: #2f7a35 ; 
     float:left;
     width:240px;
     height:80px;
@@ -288,7 +287,7 @@ ul.top-menu {
 ul.top-menu > li > a {
     color: #fff;
     font-size: 16px;
-    background: #8b5c7e;
+    background:white;
     padding: 4px 8px;
     margin-right: 15px;
     border-radius: 50%;
@@ -296,13 +295,13 @@ ul.top-menu > li > a {
     padding-right: 8px !important;
 }
 ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
-    background:#fa9fa4;
+    background:black;
     text-decoration:none;
     color:#fff !important;
     padding-right:8px !important;
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-     background:#fa9fa4 !important;
+     background:white !important;
     color:#fff !important;
 }
 .notify-row .badge {
@@ -460,7 +459,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     padding-left: 10px;
 }
 .top-nav .icon-user .username {
-    color: #555555;
+    color: white;
     font-size: 13px;
     position: relative;
     top: -5px;
@@ -494,7 +493,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 }
 .full-width .dropdown-menu.extended.logout>li>a:hover {
     background:#F1F2F7 !important;
-    color:#32323a !important;
+    color:white !important;
 }
 .dropdown-menu.extended.logout>li>a:hover {
     background:#F1F2F7 !important;
@@ -519,8 +518,8 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     padding: 0px;
     background: none;
     margin-right: 0;
-    border: 1px solid #8b5c7e;
-    background: #8b5c7e;
+    border: 1px solid #2f7a35;
+    background: #2f7a35;
 }
 .top-nav ul.top-menu>li.language>a {
     margin-top:-2px;
@@ -585,9 +584,9 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     -ms-transition: all .3s ease;
     -o-transition: all .3s ease;
     transition: all .3s ease;
-    border: 1px solid #8b5c7e;
+    border: 1px solid white;
     box-shadow: none;
-    background: #8b5c7e url(../images/search-icon.png) no-repeat 10px 8px;
+    background:#2f7a35 url(../images/search-icon.png) no-repeat 10px 8px;
     padding: 0 5px 0 30px;
     color: #fff;
     border-radius: 100px;
@@ -595,15 +594,15 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 	cursor:pointer;
 }
 .search:focus {
-    width:180px;
-    border:1px solid #8b5c7e;
+    width: 500px;
+    border:1px solid white;
     box-shadow:none;
     -webkit-transition:all .3s ease;
     -moz-transition:all .3s ease;
     -ms-transition:all .3s ease;
     -o-transition:all .3s ease;
     transition:all .3s ease;
-    color:#c8c8c8;
+    color:white;
     font-weight: 300;
 }
 .todo-search:focus{
@@ -614,13 +613,15 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     float:left;
     margin-top:23px;
     margin-left:-15px;
-    background:#8b5c7e;
+    background:#2f7a35;
     border-radius:50%;
     -webkit-border-radius:50%;
     width:32px;
     height:32px;
     position:absolute;
     right:-15px;
+    border: 1px solid white;
+  
 }
 .sidebar-toggle-box .fa-bars {
     cursor:pointer;
@@ -628,6 +629,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     font-size:15px;
     padding:8px 8px 8px 9px;
     color:#fff;
+    
 }
 .sidebar-toggle-box:hover {
     background:#fa9fa4;
@@ -668,7 +670,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     background:#ffa2a2;
 }
 .toggle-right-box:hover .fa-bars {
-    color:rgba(0,0,0,0.3);
+    color:white;
 }
 .toggle-right-box .fa-bars {
     cursor:pointer;
