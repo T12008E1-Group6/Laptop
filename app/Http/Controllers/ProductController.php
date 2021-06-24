@@ -53,12 +53,6 @@ class ProductController extends Controller
         File::copy($path.$new_image,$path_gallery.$new_image);
         $data['product_image'] = $new_image;
         }
-<<<<<<< HEAD
-        $data['product_image'] = '';
-       DB::table('tbl_product')->insert($data);
-       Session::put('message','Thêm sản phẩm thành công');
-       return redirect::to('all-product');
-=======
             $pro_id = DB::table('tbl_product')->insertGetId($data);
         
             $gallery = new Gallery();
@@ -68,7 +62,6 @@ class ProductController extends Controller
             $gallery->save();
         Session::put('message','Thêm sản phẩm thành công');
         return redirect::to('add-product');
->>>>>>> b714c0d1992e7ee47f663016cc87bb3735442748
     }
 
     // public function unactive_product($product_id){
