@@ -46,7 +46,7 @@
         <thead>
             <tr>
                 <th style="font: bold">Tên danh mục</th>
-                <th>Hiển thị</th>
+                <th>Nội dung</th>
                 <th>Control</th>
             </tr>
         </thead>
@@ -55,22 +55,7 @@
             @foreach ($all_category_product as $key =>$cate_pro)
                 <tr>
                     <td>{{ $cate_pro->category_name }}</td>
-                    <td><?php
-                      if($cate_pro->category_status==0){
-                      ?> 
-                      <a href="{{ URL::to('/unactive-category-product/'.$cate_pro->category_id)}}">
-                        <span class = "fa-thumb-styling fa fa-thumbs-up"></span>
-                      </a>
-                      <?php
-                    }else {
-                      ?>
-                      <a href="{{ URL::to('/active-category-product/'.$cate_pro->category_id)}}">
-                        <span class = "fa-thumb-styling fa fa-thumbs-down"></span>
-                      </a>
-                      <?php
-                    }
-                      ?>
-                 </td>
+                    <td>{{ $cate_pro->category_desc }}</td>
                     <td>
                       <a href="{{ URL::to('/edit-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class="">
                         <i class="fa fa-pencil-square-o text-success text-active"></i>

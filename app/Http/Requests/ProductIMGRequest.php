@@ -41,8 +41,8 @@ class ProductIMGRequest extends FormRequest
             'product_desc.required' => 'Vui lòng không để trống',
             'product_price.required'=> 'Vui lòng không để trống',
             'product_amount.required'=> 'Vui lòng không để trống',
-            'product_price.numeric' => 'Giá phải là số',
-            'product_amount.numeric' => 'Số lượng phải là số'
+            'product_price.numeric' => 'Vui lòng nhập số',
+            'product_amount.numeric' => 'Vui lòng nhập số'
         ];
     }
 }
