@@ -29,7 +29,7 @@ Route::get('/userInfo/{user}','UserInfoController@userInfo')->name('userInfo.sho
 
 Route::put('/userInfo/{id}/update','UserInfoController@update')->name('userInfo.update');
 
-
+Route::get('/about', 'AboutUsController@index');
 
 
 
