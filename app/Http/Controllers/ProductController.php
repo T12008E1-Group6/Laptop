@@ -51,11 +51,7 @@ class ProductController extends Controller
        Session::put('message','Thêm sản phẩm thành công');
        return redirect::to('add-product');
         }
-<<<<<<< HEAD
-        // $data['product_image'] = '';
-=======
-       $data['product_image'] = '';
->>>>>>> d1ebe1f898fda77e61986908a80ea3d81bd0a9a3
+        $data['product_image'] = '';
        DB::table('tbl_product')->insert($data);
        Session::put('message','Thêm sản phẩm thành công');
        return redirect::to('all-product');
