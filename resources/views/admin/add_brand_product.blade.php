@@ -31,15 +31,13 @@
                              </div>
                               @endif
                         </div>
-                       
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="" >Hiển thị</label>
                                 <select name="brand_product_status" class="form-control input-sm m-bot15">
                                     <option value="0"> Ẩn </option>
                                     <option value="1"> Hiển thị </option>
                                 </select>
-                         </div>
-
+                         </div> --}}
                         <button type="submit" name="add_brand_product" class="btn btn-info">Thêm danh mục</button>
                         
                         <div>

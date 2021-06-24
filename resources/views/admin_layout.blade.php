@@ -8,6 +8,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- //bootstrap-css -->
 <!-- Custom CSS -->
 <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
@@ -140,8 +141,115 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('js/scripts.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('js/lightgallery-all.min.js') }}"></script>
+<script src="{{ asset('js/lightslider.js') }}"></script>
+<script src="{{ asset('js/prettify.js') }}"></script>
+<script >
+    CKEDITOR.replace('ckeditor');
+    CKEDITOR.replace('ckeditor1');
+</script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        load_gallery();
+        function load_gallery(){
+           var pro_id = $('.pro_id').val();
+           var _token = $('input[name="_token"]').val();
+        //    alert(pro_id);
+        $.ajax({
+            url:"{{ url('/select-gallery') }}",
+            method: "POST",
+            data:{pro_id:pro_id,_token:_token},
+            success:function(data){
+                $('#gallery_load').html(data);
+            }
+        });
+    }
+        $('#file').change(function(){
+            var error = '';
+            var files = $('#file')[0].files;
+
+            if(files.length>3){
+                error+='<p> Bạn chọn tối đa chỉ được 3 ảnh </p>';
+            }else if(files.length==''){
+                error+='<p> Bạn không được bỏ trống </p>';
+            } else if(files.size > 2000000){
+                error+='<p> file ảnh không được lớn hơn 2MB </p>';
+            }
+
+            if (error==''){
+                
+            } else {
+                $('#file').val('');
+                $('#error_gallery').html('<span class="text-danger">'+error+'</span>');
+                return false;
+            }
+        });
+
+        $(document).on('blur','.edit_gal_name',function(){
+            var gal_id = $(this).data('gal_id');
+            var gal_text = $(this).text();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+            url:"{{ url('/update-gallery-name') }}",
+            method: "POST",
+            data:{gal_id:gal_id,gal_text:gal_text,_token:_token},
+            success:function(data){
+                load_gallery();
+                $('#error_gallery').html('<span class="text-danger">Cập nhật tên hình ảnh thành công</span>');
+            }
+        });
+        });
+
+        $(document).on('click','.delete-gallery',function(){
+            var gal_id = $(this).data('gal_id');
+            var _token = $('input[name="_token"]').val();
+
+            if(confirm('Bạn có muốn xoá hình nảy này không ?')){
+            $.ajax({
+            url:"{{ url('/delete-gallery') }}",
+            method: "POST",
+            data:{gal_id:gal_id,_token:_token},
+            success:function(data){
+                load_gallery();
+                $('#error_gallery').html('<span class="text-danger"> Xoá hình ảnh thành công</span>');
+            }
+        });
+         }
+        });
+
+        $(document).on('change','.file_image',function(){
+            var gal_id = $(this).data('gal_id');
+            var image = document.getElementById('file-'+gal_id).files[0];
+            var form_data = new FormData();
+
+            form_data.append("file",document.getElementById('file-'+gal_id).files[0]);
+            form_data.append("gal_id",gal_id);
+
+            
+            $.ajax({
+            url:"{{ url('/update-gallery') }}",
+            method: "POST",
+            headers:{
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            },
+            data:form_data,
+            
+            contentType:false,
+            cache:false,
+            processData:false,
+            success:function(data){
+                load_gallery();
+                $('#error_gallery').html('<span class="text-danger"> Cập nhật hình ảnh thành công</span>');
+            }
+        });
+         
+        });
+    });
+</script>
 <script src="{{ asset('js/jquery.scrollTo.js') }}"></script>
+
 <!-- morris JavaScript -->	
 <script>
 	$(document).ready(function() {

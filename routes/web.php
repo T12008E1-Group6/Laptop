@@ -208,8 +208,8 @@ Route::get('/add-category-product', 'CategoryProduct@add_category_product');
 Route::get('/all-category-product', 'CategoryProduct@all_category_product'); 
 Route::post('/save-category-product', 'CategoryProduct@save_category_product'); 
 
-Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@unactive_category_product'); 
-Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product'); 
+// Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@unactive_category_product'); 
+// Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product'); 
 
 Route::get('/edit-category-product/{category_product_id}', 'CategoryProduct@edit_category_product');
 Route::get('/delete-category-product/{category_product_id}', 'CategoryProduct@delete_category_product');
@@ -222,23 +222,23 @@ Route::get('/add-brand-product', 'BrandProduct@add_brand_product');
 Route::get('/all-brand-product', 'BrandProduct@all_brand_product'); 
 Route::post('/save-brand-product', 'BrandProduct@save_brand_product'); 
 
-Route::get('/unactive-brand-product/{brand_product_id}','BrandProduct@unactive_brand_product'); 
-Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand_product'); 
+// Route::get('/unactive-brand-product/{brand_product_id}','BrandProduct@unactive_brand_product'); 
+// Route::get('/active-brand-product/{brand_product_id}','BrandProduct@active_brand_product'); 
 
 Route::get('/edit-brand-product/{brand_product_id}', 'BrandProduct@edit_brand_product');
 Route::get('/delete-brand-product/{brand_product_id}', 'BrandProduct@delete_brand_product');
 
 Route::post('/update-brand-product/{brand_product_id}', 'BrandProduct@update_brand_product');
 
-//Product
+//AdminProduct
 
 Route::get('/add-product', 'ProductController@add_product');
 Route::get('/all-product', 'ProductController@all_product'); 
 Route::post('/save-product', 'ProductController@save_product'); 
 
 
-Route::get('/unactive-product/{product_id}','ProductController@unactive_product'); 
-Route::get('/active-product/{product_id}','ProductController@active_product'); 
+// Route::get('/unactive-product/{product_id}','ProductController@unactive_product'); 
+// Route::get('/active-product/{product_id}','ProductController@active_product'); 
 
 Route::get('/edit-product/{product_id}', 'ProductController@edit_product');
 Route::get('/delete-product/{product_id}', 'ProductController@delete_product');
@@ -247,7 +247,7 @@ Route::post('/update-product/{product_id}', 'ProductController@update_product');
 
 // Description
 Route::get('/add-desc', 'DescriptionController@add_desc');
-Route::get('/add-desc/{product_id}', 'DescriptionController@add_desc');
+Route::get('/add-desc/{pro_id}', 'DescriptionController@add_desc');
 Route::get('/all-desc', 'DescriptionController@all_desc'); 
 
 Route::post('/save-desc', 'DescriptionController@save_desc'); 
@@ -258,4 +258,13 @@ Route::get('/delete-desc/{product_id}', 'DescriptionController@delete_desc');
 
 Route::post('/update-desc/{product_id}', 'DescriptionController@update_desc'); 
 
+//Details Product
+Route::get('/chi-tiet-san-pham/{product_id}', 'ProductController@details_product');
 
+//Gallery
+Route::get('add-gallery/{product_id}', 'GalleryController@add_gallery');
+Route::post('select-gallery', 'GalleryController@select_gallery');
+Route::post('insert-gallery/{pro_id}', 'GalleryController@insert_gallery');
+Route::post('update-gallery-name', 'GalleryController@update_gallery_name');
+Route::post('delete-gallery', 'GalleryController@delete_gallery');
+Route::post('update-gallery', 'GalleryController@update_gallery');
