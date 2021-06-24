@@ -25,7 +25,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/userInfo/{user}','UserInfoController@userInfo')->name('userInfo.show');
 
+Route::put('/userInfo/{id}/update','UserInfoController@update')->name('userInfo.update');
 
 
 
