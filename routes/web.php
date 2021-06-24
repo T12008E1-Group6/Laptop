@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/index', function(){return view('/index')});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
@@ -31,7 +31,7 @@ Route::put('/userInfo/{id}/update','UserInfoController@update')->name('userInfo.
 
 Route::get('/about', 'AboutUsController@index');
 
-
+Route::post('/index', 'ContactFormController@store');
 
 
 
