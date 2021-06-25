@@ -19,7 +19,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -30,7 +29,7 @@ Route::put('/userInfo/{id}/update','UserInfoController@update')->name('userInfo.
 
 Route::get('/about', 'AboutUsController@index');
 
-
+Route::post('/index', 'ContactFormController@store');
 
 
 
@@ -267,7 +266,6 @@ Route::post('insert-gallery/{pro_id}', 'GalleryController@insert_gallery');
 Route::post('update-gallery-name', 'GalleryController@update_gallery_name');
 Route::post('delete-gallery', 'GalleryController@delete_gallery');
 Route::post('update-gallery', 'GalleryController@update_gallery');
-
 
 
 
