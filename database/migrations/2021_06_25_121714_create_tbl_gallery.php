@@ -17,8 +17,9 @@ class CreateTblGallery extends Migration
             $table->increments('gallery_id');
             $table->string('gallery_name');
             $table->string('gallery_image');
-            $table->integer('product_id');
+            $table->unsignedInteger('product_id'); //edit by Quang Thành
             $table->timestamps();
+            $table->foreign('product_id')->references('product_id')->on('tbl_product')->onDelete('cascade'); //edit by Quang Thành
         });
     }
 

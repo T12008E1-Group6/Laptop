@@ -14,8 +14,8 @@ class CreateTblDescription extends Migration
     public function up()
     {
         Schema::create('tbl_description', function (Blueprint $table) {
-            $table->increments('description_id');
-            $table->integer('product_id');
+            $table->increments('description_id'); //edit by Quang Thành
+            $table->unsignedInteger('product_id'); //edit by Quang Thành
             $table->integer('brand_id');
             $table->string('desc_guarantee');
             $table->string('desc_warranty');
@@ -42,6 +42,7 @@ class CreateTblDescription extends Migration
             $table->string('desc_accessories');
             $table->string('desc_led');
             $table->timestamps();
+            $table->foreign('product_id')->references('product_id')->on('tbl_product')->onDelete('cascade'); //edit by Quang Thành
         });
     }
 
