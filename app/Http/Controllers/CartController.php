@@ -9,33 +9,27 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    public function getAddToCart (Request $request, $id) {
-        $product = product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart();
-        $cart->ExistOldCart($oldCart);
-        $cart->add($product);
+    protected $cart;
 
-        $request->session()->put('cart', $cart);
-        // dd($request->session()->get('cart'));
-        return redirect()->route('products.index');
+    public function getAddToCart ($id) {
+        if($this->cart == null) $this->cart = new Cart();
+        $product = product::find($id);
+        // DD($product);
+        $this->cart->add($product);
+        // DD($this->cart);
+        Session::put('cart', $this->cart);
+        return redirect()->back();
     }
 
     public function getCart() {
-        if (! Session::has('cart')) {
-            return view('cart.cart');
-        }
-        $oldCart = Session::get('cart');
-        $cart = new Cart();
-        $cart->ExistOldCart($oldCart);
-        return view('cart.cart', ['cart' => $cart]);
+        if($this->cart == null) $this->cart = new Cart();
+        // DD($this->cart);
+        return view('cart.cart', ['cart' => $this->cart]);
+    }
+    
+    public function getCheckout() {
+        if($this->cart == null) $this->cart = new Cart();
+        return view('shop.checkout', ['cart' => $this->cart]);
     }
 
-    public function getCheckout() {
-        if (! Session::has('cart')) {
-            return view('cart.cart');
-        }
-        $cart = Session::get('cart');
-        return view('shop.checkout', ['totalPrice' => $cart->totalPrice]);
-    }
 }

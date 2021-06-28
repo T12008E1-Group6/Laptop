@@ -22,6 +22,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
  
 </head>
 <body>
@@ -59,8 +62,12 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="navbar-nav">
-                            <a href="/shopping_cart" class="nav-link" style="font-weight:bold">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> shopping cart
+                            <a href="{{ route('cart.shoppingCart') }}" class="nav-link" style="font-weight:bold">
+                                Shopping cart 
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span class="badge bg-warning rounded-circle"
+                                        style="position: relative; top: -10px; left: -10px;"
+                                >{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                             </a>
                         </li>
                         @guest
@@ -105,58 +112,62 @@
             @yield('content')
         </main>
     </div>
-</body>
 
-<footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210)">
-    <div class="bg-light">
-        <div class="container">
-            <div class="row py-4 d-flex align-items-center">
-                <div class="col-md-12 text-center">
-                    <a href=""><i class="fab fa-facebook mr-4"></i></a>
-                    <a href=""><i class="fab fa-twitter mr-4"></i></a>
-                    <a href=""><i class="fab fa-google-plus-g mr-4"></i></a>
-                    <a href=""><i class="fab fa-instagram mr-4"></i></a>
-                    <a href=""><i class="fab fa-linkedin-in mr-4"></i></a>
-
+    <footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210)">
+        <div class="bg-light">
+            <div class="container">
+                <div class="row py-4 d-flex align-items-center">
+                    <div class="col-md-12 text-center">
+                        <a href=""><i class="fab fa-facebook mr-4"></i></a>
+                        <a href=""><i class="fab fa-twitter mr-4"></i></a>
+                        <a href=""><i class="fab fa-google-plus-g mr-4"></i></a>
+                        <a href=""><i class="fab fa-instagram mr-4"></i></a>
+                        <a href=""><i class="fab fa-linkedin-in mr-4"></i></a>
+    
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container text-center text-md-left mt-5">
-        <div class="row">
-            <div class="col-md-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Dvice</h6>
-                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-                <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+        <div class="container text-center text-md-left mt-5">
+            <div class="row">
+                <div class="col-md-3 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold">Dvice</h6>
+                    <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                    <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+                </div>
+                <div class="col-md-3 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold">Discover more</h6>
+                    <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                <ul class="list-unstyled">
+                    <li class="my-2"><a href="">Apple</a></li>
+                    <li class="my-2"><a href="">Asus</a></li>
+                    <li class="my-2"><a href="">Lenovo</a></li>
+                    <li class="my-2"><a href="">Samsung</a></li>
+                </ul>
             </div>
             <div class="col-md-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Discover more</h6>
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-            <ul class="list-unstyled">
-                <li class="my-2"><a href="">Apple</a></li>
-                <li class="my-2"><a href="">Asus</a></li>
-                <li class="my-2"><a href="">Lenovo</a></li>
-                <li class="my-2"><a href="">Samsung</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3 mx-auto mb-4">
-            <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-            <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-            <ul class="list-unstyled">
-                <li class="my-2"><a href="">Product</a></li>
-                <li class="my-2"><a href="">About Us</a></li>
-                <li class="my-2"><a href="">Blogs</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3 mx-auto mb-4">
-            <h6 class="text-uppercase font-weight-bold">Contact</h6>
-            <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-            <ul class="list-unstyled">
-                <li class="my-2"><i class="fas fa-home"></i> CMT8 str, District 3, HCM city</li>
-                <li class="my-2"><i class="far fa-envelope"></i> Dvice@gmail.com</li>
-                <li class="my-2"><i class="fas fa-phone"></i> +84 912345678</li>
-            </ul>
-        </div>
-        
-</footer>
+                <ul class="list-unstyled">
+                    <li class="my-2"><a href="">Product</a></li>
+                    <li class="my-2"><a href="">About Us</a></li>
+                    <li class="my-2"><a href="">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                <ul class="list-unstyled">
+                    <li class="my-2"><i class="fas fa-home"></i> CMT8 str, District 3, HCM city</li>
+                    <li class="my-2"><i class="far fa-envelope"></i> Dvice@gmail.com</li>
+                    <li class="my-2"><i class="fas fa-phone"></i> +84 912345678</li>
+                </ul>
+            </div>
+            
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
 </html>
+9io8

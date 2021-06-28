@@ -398,6 +398,8 @@ Route::post('update-gallery', 'GalleryController@update_gallery');
 
 
 //Quang thành Routes
+Route::get('/laptops-show', 'ProductController@QTindex')->name('laptops.show');
+
 Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addToCart');
 Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
 
