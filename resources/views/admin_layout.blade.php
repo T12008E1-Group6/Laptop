@@ -10,6 +10,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- //bootstrap-css -->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
 <!-- Custom CSS -->
 <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
 <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet"/>
