@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/index', function(){return view('/index');});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -33,7 +33,11 @@ Route::get('/about', 'AboutUsController@index');
 
 Route::post('/index', 'ContactFormController@store');
 
+Route::get('/userShow', 'AdminUserController@index');
 
+Route::get('/adminDeleteUser/{id}','AdminUserController@delete');
+
+Route::get('/adminUserChangeActive/{id}','AdminUserController@adminChangeActive');
 
 
 
