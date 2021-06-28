@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="alert alert-danger">
+@if(session('message'))
+<div class="alert alert-danger py-2">
     {{session('message')}}
 </div>
-<div class="container">
+@endif
+<div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
