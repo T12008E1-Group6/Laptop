@@ -23,7 +23,8 @@ Route::get('/index', function(){return view('/index');});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::post('/contactUs', 'ContactFormController@store');
+Route::get('/contactUs','ContactFormController@index');
 
 Route::get('/userInfo/{user}','UserInfoController@userInfo')->name('userInfo.show');
 
@@ -38,7 +39,6 @@ Route::get('/userShow', 'AdminUserController@index');
 Route::get('/adminDeleteUser/{id}','AdminUserController@delete');
 
 Route::get('/adminUserChangeActive/{id}','AdminUserController@adminChangeActive');
-
 
 
 
