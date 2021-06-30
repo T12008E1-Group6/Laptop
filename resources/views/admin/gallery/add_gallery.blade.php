@@ -15,6 +15,7 @@
                 }
                 ?>
                 </div>
+                <a href="{{ ('/all-product') }}">Trang sản phẩm admin</a>
                 <form action="{{ url('/insert-gallery/'.$pro_id) }} " method="POST" enctype="multipart/form-data">
                   @csrf
                 <div class="row">

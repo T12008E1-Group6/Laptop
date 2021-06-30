@@ -25,7 +25,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </div>
+    </div>
 
     <div>
         <div class="container py-4">

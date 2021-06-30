@@ -30,6 +30,8 @@ Route::get('/userInfo/{user}','UserInfoController@userInfo')->name('userInfo.sho
 Route::put('/userInfo/{id}/update','UserInfoController@update')->name('userInfo.update');
 
 Route::get('/about', 'AboutUsController@index');
+Route::get('/index', function(){return view("/index");});
+Route::post('/index', 'ContactFormController@store');
 
 
 
@@ -257,6 +259,17 @@ Route::get('/edit-desc/{product_id}', 'DescriptionController@edit_desc');
 Route::get('/delete-desc/{product_id}', 'DescriptionController@delete_desc');
 
 Route::post('/update-desc/{product_id}', 'DescriptionController@update_desc'); 
+
+//danh mục sản phẩm trang product
+Route::get('/danh-muc-san-pham/{category_id}', 'ProductController@show_category_product'); 
+
+//thương hiệu sản phẩm trang product
+Route::get('/thuong-hieu-san-pham/{brand_id}', 'ProductController@show_brand_product'); 
+
+
+//show Product
+Route::get('product', 'ProductController@show_product');
+
 
 //Details Product
 Route::get('/chi-tiet-san-pham/{product_id}', 'ProductController@details_product');

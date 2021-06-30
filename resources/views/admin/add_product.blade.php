@@ -30,6 +30,7 @@
                             </div>
                             @endif
                         </div>
+                        
                         <div class="form-group">
                             <label for="">Hình ảnh sản phẩm</label>
                             <input type="file" name="product_image" class="form-control" value="{{ old('product_image') }}">

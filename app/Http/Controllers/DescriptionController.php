@@ -25,7 +25,7 @@ class DescriptionController extends Controller
         return view('admin_layout')->with('admin.all_desc',$manager_desc);
     }
 
-    public function save_desc(DescriptionRequest $request,){
+    public function save_desc(DescriptionRequest $request){
         $data = array();
         $data['brand_id'] = $request->product_brand;
         $data['desc_guarantee'] = $request->desc_guarantee;

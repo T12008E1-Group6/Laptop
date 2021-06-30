@@ -6,7 +6,7 @@
       <div class="panel-heading">
      Liệt kê thương hiệu sản phẩm
       </div>
-      <div class="row w3-res-tb">
+      {{-- <div class="row w3-res-tb">
         <div class="col-sm-5 m-b-xs">
           <select class="input-sm form-control w-sm inline v-middle">
             <option value="0">Acer</option>
@@ -29,7 +29,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <div class="container">
         <div class="row">
@@ -46,6 +46,7 @@
               <tr>
                   <th>Tên thương hiệu</th>
                   <th>Nội dung</th>
+                  <th>Hình ảnh</th>
                   <th>Control</th>
               </tr>
           </thead>
@@ -55,6 +56,7 @@
                   <tr>
                       <td>{{ $brand_pro->brand_name }}</td>
                       <td>{{ $brand_pro->brand_desc }}</td>
+                      <td><img src="uploads/product/{{ $brand_pro->brand_image }}" height="100" width="100"></td>
                       <td>
                         <a href="{{ URL::to('/edit-brand-product/'.$brand_pro->brand_id) }}" class="active styling-edit" 
                           ui-toggle-class=""><i 
