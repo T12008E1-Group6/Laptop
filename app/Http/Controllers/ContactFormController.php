@@ -22,4 +22,7 @@ class ContactFormController extends Controller
 
     }
 
+    public function index(){
+        return view('/contactUs');
+    }
 }
