@@ -1,4 +1,4 @@
-@extends('layouts.appIndex')
+@extends('layouts.app')
 
 @section('content')
 
@@ -30,10 +30,10 @@
     <div>
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-12 title">
+                <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.)">
                     <h1 class="title-link">
                         <a href="">
-                            Best sellers    
+                            New Arrivals    
                             <i class="fas fa-arrow-circle-right"></i>  
                         </a>
                     </h1>
@@ -41,21 +41,29 @@
                 </div>
             </div>
             <div class="row py-2 mb-3">
-                <div class="col-md-3">
-                    
-                </div>
-
-                <div class="col-md-3">
-                    
-                </div>
-
-                <div class="col-md-3">
-                    
-                </div>
-
-                <div class="col-md-3">
-                    
-                </div>
+               @foreach($NewProduct as $pro)
+                    <div class="col-md-3 py-2">
+                        <div class="product-section card">
+                            <div class="product-top" style="padding-top:1.5vh; justify-content:center;align-items:center;text-align:center">
+                                <img src="{{$pro->product_image}}" alt="" class="img-card" height="235vh" width="235vh" style="border: 1px solid rgba(199, 199, 199, 0.616); border-radius: 2px;">
+                                <div class="overlay" style="margin-top:5px">
+                                    <button class="btn btn-primary" type="button" title="Add to cart"><i class="fas fa-cart-arrow-down"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-bottom text-center" style="color:black; padding-bottom:1.5vh;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <h5>{{$pro->product_name}}</h5>
+                                <h5>${{$pro->product_price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
          </div>
 
         </div>
@@ -64,10 +72,10 @@
         <div>
             <div class="container py-4">
                 <div class="row">
-                    <div class="col-md-12 title">
+                    <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.)">
                         <h1 class="title-link">
                             <a href="">
-                                New Arrivals    
+                                Best Products    
                                 <i class="fas fa-arrow-circle-right"></i>  
                             </a>
                         </h1>
@@ -75,33 +83,82 @@
                     </div>
                 </div>
                 <div class="row py-2 mb-3">
-                    <div class="col-md-3">
-                        
+                    @foreach($BestProduct as $pro)
+                    <div class="col-md-3 py-2">
+                        <div class="product-section card">
+                            <div class="product-top" style="padding-top:1.5vh; justify-content:center;align-items:center;text-align:center">
+                                <img src="{{$pro->product_image}}" alt="" class="img-card" height="235vh" width="235vh" style="border: 1px solid rgba(199, 199, 199, 0.616); border-radius: 2px;">
+                                <div class="overlay" style="margin-top:5px">
+                                    <button class="btn btn-primary" type="button" title="Add to cart"><i class="fas fa-cart-arrow-down"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-bottom text-center" style="color:black; padding-bottom:1.5vh;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <h5>{{$pro->product_name}}</h5>
+                                <h5>${{$pro->product_price}}</h5>
+                            </div>
+                        </div>
                     </div>
-    
-                    <div class="col-md-3">
-                        
-                    </div>
-    
-                    <div class="col-md-3">
-                        
-                    </div>
-    
-                    <div class="col-md-3">
-                        
-                    </div>
+                @endforeach
              </div>
     
     
             </div>
-
+            <div>
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.)">
+                            <h1 class="title-link">
+                                <a href="">
+                                    Suggesting Products    
+                                    <i class="fas fa-arrow-circle-right"></i>  
+                                </a>
+                            </h1>
+        
+                        </div>
+                    </div>
+                    <div class="row py-2 mb-3">
+                        @foreach($SuggestingProduct as $pro)
+                        <div class="col-md-3 py-2">
+                            <div class="product-section card">
+                                <div class="product-top" style="padding-top:1.5vh; justify-content:center;align-items:center;text-align:center">
+                                    <img src="{{$pro->product_image}}" alt="" class="img-card" height="235vh" width="235vh" style="border: 1px solid rgba(199, 199, 199, 0.616); border-radius: 2px;">
+                                    <div class="overlay" style="margin-top:5px">
+                                        <button class="btn btn-primary" type="button" title="Add to cart"><i class="fas fa-cart-arrow-down"></i></button>
+                                        <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                                        <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-bottom text-center" style="color:black; padding-bottom:1.5vh;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <h5>{{$pro->product_name}}</h5>
+                                    <h5>${{$pro->product_price}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                 </div>
+        
+        
+                </div>
+    
             
 
     <div class="container py-4">
-        <div class="col-md-12 title">
+        <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.)">
             <h1 class="title-link">
                 <a href="/blog">
-                    Blogs <i class="fas fa-arrow-circle-right"></i>
+                    About us <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </h1>
         </div>
@@ -110,14 +167,14 @@
                 <div style="background-image: url('images/blogImg.jpg'); justify-content:center; text-align:center; align-items:center; height:50vh">
                     <div style="padding-top:50px;">
                         <h1 style="font-size:5vh; font-weight:300; color:white">
-                            Read our newest
+                            Read our story
                         </h1>
                         <h1 >
-                            <a href="/blog" style="font-size:20vh; font-weight:900; color: white">Blogs
+                            <a href="/aboutUs" style="font-size:20vh; font-weight:900; color: white">About Us
                             </a>
                         </h1>
-                        <a href="/blog" class="h5 py-4">
-                            to blogs <i class="fas fa-arrow-circle-right"></i>
+                        <a href="/aboutUs" class="h5 py-4">
+                            to our story <i class="fas fa-arrow-circle-right"></i>
                         </a>      
                     </div> 
                 </div>
@@ -127,8 +184,10 @@
 
     <div class="container py-4" >
         <div class="row">
-            <div class="col-md-12 title" >
-                <h1 class="title-link">Contact Us</h1>
+            <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.)">
+                <h1 class="title-link">
+                    <a href=""> Contact Us</a>
+                </h1>
             </div>            
         </div>
 
