@@ -75,11 +75,9 @@ class ProductController extends Controller
         $data=array();
         $data['product_name'] = $request->product_name;
         $data['product_desc'] = $request->product_desc;
-
         $data['product_content'] = $request->product_content;
         $data['product_amount'] = $request->product_amount;
         $data['product_price'] = $request->product_price;
-
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $get_image = $request->file('product_image');
