@@ -2,10 +2,10 @@
 
 @section('content')
     <h2>Your Cart</h2>
-    <div class="container">
+    <div class="container min-vh-100">
         @if ($cart->totalQty > 0)
             @foreach ($cart->cartItems as $groupItem)
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-2">
                         <img src="{{ asset("uploads/product/" . $groupItem['item']->product_image) }}" alt="ProductImage" style="max-height: 100px; max-width: 100px">
                     </div>
@@ -18,17 +18,19 @@
                         </div>
                     </div>
                     <div class="col-2 text-center">{{ $groupItem['subtotalPrice'] }}</div>
-                    <div class="col"><a href="">Xóa</a></div>
+                    <div class="col"><a href="{{ route('cart.removeFromCart', ['id' => $groupItem['item']->product_id]) }}"
+                        style="font-size: 1.5rem"
+                        ><i class="fas fa-trash-alt"></i></a></div>
                 </div>
                 
             @endforeach
             <hr>
-            <div class="row">
+            <div class="row d-flex justify-content-end">
                 <div class="col-3">
                     <strong>Total: {{ $cart->totalPrice }}</strong>
                 </div>
             </div>
-            <div class="row d-flex justify-content-right">
+            <div class="row d-flex justify-content-end">
                 <div class="col-3">
                     <a href="{{ route('checkout') }}" class="btn btn-success">Checkout</a>
                 </div>

@@ -406,6 +406,7 @@ Route::get('/laptops-show', 'ProductController@QTindex')->name('laptops.show');
 
 Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addToCart');
 Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
+Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')->name('cart.removeFromCart');
 
 Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
 Route::post('/checkout', 'CartController@postCheckout')->name('checkout');

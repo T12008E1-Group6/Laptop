@@ -29,7 +29,14 @@ class CartController extends Controller
     
     public function getCheckout() {
         if($this->cart == null) $this->cart = new Cart();
-        return view('shop.checkout', ['cart' => $this->cart]);
+        return view('cart.checkout', ['cart' => $this->cart]);
+    }
+
+    public function getRemoveFromCart($id) {
+        $this->cart = Session::get('cart');
+        $this->cart->remove($id);
+        Session::put('cart', $this->cart);
+        return redirect()->back();
     }
 
 }

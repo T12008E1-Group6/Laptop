@@ -39,4 +39,11 @@ class Cart
         $this->totalPrice += $pickingItem->product_price;
 
     }
+
+    public function remove($itemId) {
+        $groupItem = $this->cartItems[$itemId];
+        $this->totalQty -= $groupItem['qty'];
+        $this->totalPrice -= $groupItem['subtotalPrice'];
+        unset($this->cartItems[$itemId]);
+    }
 }
