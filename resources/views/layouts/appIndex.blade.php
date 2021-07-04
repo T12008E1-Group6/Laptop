@@ -25,7 +25,7 @@
  
 </head>
 <body>
-    <div id="app">
+   
         <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a href="{{ url('/index') }}" style="padding-right:3%">
@@ -42,7 +42,7 @@
                             <a href="/index" class="nav-link active">Home</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/products" class="nav-link  ">Products</a>
+                            <a href="{{ ('/product/') }}" class="nav-link  ">Products</a>
                         </li>
                         <li class='navbar-nav'>
                             <a href="/blog" class="nav-link ">Blog</a>
@@ -104,7 +104,6 @@
             
             @yield('content')
         </main>
-    </div>
 </body>
 
 <footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210)">

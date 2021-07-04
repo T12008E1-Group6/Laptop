@@ -5,14 +5,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\DescriptionRequest;
-use Illuminate\Support\Facades\Session;
+use App\Http\Requests\DescriptionIMGRequest;
+
 
 class DescriptionController extends Controller
 {
     //
-    public function add_desc(){
+    public function add_desc($desc_id){
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get();
-        $product_id = DB::table('tbl_product')->get();
+        $product_id = DB::table('tbl_product')->where('product_id',$desc_id)->get();
         return view('admin.add_desc')->with('brand_product',$brand_product)->with('product_id',$product_id);
     }
 
@@ -26,7 +27,7 @@ class DescriptionController extends Controller
         return view('admin_layout')->with('admin.all_desc',$manager_desc);
     }
 
-    public function save_desc(DescriptionRequest $request) {
+    public function save_desc(DescriptionRequest $request,$desc_id){
         $data = array();
         $data['brand_id'] = $request->product_brand;
         $data['desc_guarantee'] = $request->desc_guarantee;
@@ -54,21 +55,25 @@ class DescriptionController extends Controller
         $data['desc_accessories'] = $request->desc_accessories;
         $data['desc_led'] = $request->desc_led;
         $data['product_id'] = $request->product_id;
-        $data = DB::table('tbl_description')->insert($data);
+        $data = DB::table('tbl_description')->where('product_id',$desc_id)->insert($data);
         Session::put('message','Thêm thông số kỹ thuật sản phẩm thành công');
-        return redirect::to('add-desc');
+        return redirect::to('all-product');
     }
 
     public function edit_desc($desc_id){
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get();
+        // $id_product = DB::table('tbl_product')->get();
 
         $edit_desc = DB::table('tbl_description')->where('product_id',$desc_id)->get();
-        $manager_desc = view('admin.edit_desc')->with('edit_desc',$edit_desc)->with('brand_product',$brand_product);
+        $manager_desc = view('admin.edit_desc')->with('edit_desc',$edit_desc)->with('brand_product',$brand_product)
+        // ->with('id_product',$id_product)
+        ;
         return view('admin_layout')->with('admin.edit_desc',$manager_desc);
     }
 
-    public function update_desc(DescriptionRequest $request,$desc_id){
+    public function update_desc(DescriptionIMGRequest $request,$desc_id){
         $data = array();
+        $data['product_id'] = $request ->product_id;
         $data['brand_id'] = $request->product_brand;
         $data['desc_guarantee'] = $request->desc_guarantee;
         $data['desc_warranty'] = $request->desc_warranty;
@@ -96,7 +101,7 @@ class DescriptionController extends Controller
         $data['desc_led'] = $request->desc_led;
         DB::table('tbl_description')->where('product_id',$desc_id)->update($data);
         Session::put('message','Cập nhật thông tin kỹ thuật sản phẩm thành công');
-        return redirect::to('all-desc');   
+        return redirect::to('all-product');   
     }
 
     public function delete_desc($desc_id){

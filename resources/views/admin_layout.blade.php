@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="">
-                <span class="username">ABC</span>
+                <span class="username">Thanh</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
@@ -177,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }else if(files.length==''){
                 error+='<p> Bạn không được bỏ trống </p>';
             } else if(files.size > 2000000){
-                error+='<p> file ảnh không được lớn hơn 2MB </p>';
+                error+='<p> file ảnh không được lớn hơn 2GB </p>';
             }
 
             if (error==''){

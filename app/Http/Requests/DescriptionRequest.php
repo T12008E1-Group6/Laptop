@@ -36,7 +36,8 @@ class DescriptionRequest extends FormRequest
             'desc_connector' => 'required','desc_wireless' => 'required','desc_keyboard' => 'required',
             'desc_window' => 'required','desc_size' => 'required','desc_battery' => 'required',
             'desc_weight' => 'required','desc_color' => 'required','desc_security' => 'required',
-            'desc_led' => 'bail |required','desc_accessories' => 'required', 'product_id' =>'required|unique:tbl_description,product_id'
+            'desc_led' => 'bail |required','desc_accessories' => 'required', 
+            'product_id' =>'required|unique:tbl_description,product_id'
         ];
     }
 
@@ -56,7 +57,8 @@ class DescriptionRequest extends FormRequest
             'desc_size.required'=> 'Vui lòng không để trống','desc_battery.required'=> 'Vui lòng không để trống',
             'desc_weight.required'=> 'Vui lòng không để trống','desc_color.required'=> 'Vui lòng không để trống',
             'desc_security.required'=> 'Vui lòng không để trống','desc_led.required'=> 'Vui lòng không để trống',
-            'desc_accessories.required'=> 'Vui lòng không để trống','product_id.unique' => 'Dữ liệu đã tồn tại ! Vui lòng thay đổi'
+            'desc_accessories.required'=> 'Vui lòng không để trống',
+            'product_id.unique' => 'Dữ liệu đã tồn tại ! Vui lòng thay đổi'
         
         ];
     }

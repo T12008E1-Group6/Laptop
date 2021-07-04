@@ -4,9 +4,9 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
       <div class="panel-heading">
-     Liệt kê thương hiệu sản phẩm
+     Liệt kê  sản phẩm
       </div>
-      <div class="row w3-res-tb">
+      {{-- <div class="row w3-res-tb">
         <div class="col-sm-5 m-b-xs">
           <select class="input-sm form-control w-sm inline v-middle">
             <option value="0">Acer</option>
@@ -29,7 +29,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <div class="table-responsive">
         <table class="table table-striped b-t b-light">  
@@ -55,9 +55,9 @@
               <th style="width:30px;"></th>   
             </tr> 
           </thead>
+          <a href="{{ URL::to('/product/')}}">Trang sản phẩm</a>  
           <tbody>
-            @foreach ($all_product as $key =>$pro)     
-            <a href="{{ URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}">Chi tiet sản phẩm</a>                                     
+            @foreach ($all_product as $key =>$pro)                               
             <tr>
               <td>{{ $pro->product_id }}</td>
                 <td style="word-break: break-word; width: 100px ; height: 100px;" >

@@ -26,14 +26,16 @@ class BrandRequest extends FormRequest
         return [
             //
             'brand_product_name' => 'required',
-            'brand_product_desc' => 'required'   
+            'brand_product_desc' => 'required',
+            'brand_image' => 'required'  
         ];
     }
 
     public function messages(){
         return [
             'brand_product_name.required' => 'Tên thương hiệu không được để trống',
-            'brand_product_desc.required' => 'Vui lòng nhập nội dung'
+            'brand_product_desc.required' => 'Vui lòng nhập nội dung',
+            'brand_image.required' => 'Vui lòng thêm ảnh'  
         ];
     }
 }

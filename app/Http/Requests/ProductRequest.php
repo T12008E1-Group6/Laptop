@@ -31,7 +31,9 @@ class ProductRequest extends FormRequest
             'product_content' => 'required',
             'product_price' => 'required',
             'product_amount' => 'required|numeric',
-            'product_price' => 'required|numeric'
+            'product_price' => 'required|numeric',
+      
+            
         ];
     }
 
@@ -46,6 +48,7 @@ class ProductRequest extends FormRequest
             'product_amount.required'=> 'Vui lòng không để trống',
             'product_price.numeric' => 'Vui lòng nhập số',
             'product_amount.numeric' => 'Vui lòng nhập số',
+          
         ];
     }
 }

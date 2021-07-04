@@ -2,16 +2,20 @@
 <html lang="en">
   <head>
     <title></title>
-    <!-- Required meta tags -->
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{ asset('css/lightgallery.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/lightslider.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/prettify.css') }}" rel="stylesheet"/>
-  </head>
+    <link rel="stylesheet" href="{{ asset('icon_font/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('owl/assets/owl.carousel.min.css') }}">
+    {{-- <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('owl/assets/owl.theme.default.css') }}">
+   
+  </head> 
   <style>
   .style a:link, .style a:visited {
       background-color: #f44336;
@@ -29,18 +33,30 @@
       background-color: red;  
     }
   
+  .ten{
+      width: 100%;
+      float: left;
+    }
+  .ten div{
+      font-size: 14px;
+      line-height: 28px;
+      height: 60px;
+      overflow: hidden;
+      margin-left: 10px;
+      font-size: 12px
+  }
+  
     .box{
       width: 100%;
       float: left;
       margin: 10px 1px;
       padding: 15px;
       border-radius: 8px;
-     
     }
     .box div{
-      font-size: 15px;
+      font-size: 14px;
       line-height: 28px;
-      height: 450px;
+      height: 680px;
       overflow: hidden;
     
     }
@@ -52,6 +68,8 @@
       padding: 10px 15px;
       border-radius: 8xp;
       margin-top: 15px;
+      border-radius: 8px;
+      font-size: 14px;
     }
     .box a:hover{
       box-shadow: 0 5px 5px rgba(0,0,0,0.2);
@@ -68,41 +86,215 @@
     max-width: 100%;
 }
 li.active {
-    border: 2px solid blue;
+    border: 2px solid black;
+}
+
+.csbh div{
+  margin-top: 10px;
+}
+.slider {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider .slide {
+  display: flex;
+  position: absolute;
+  left: 0;
+  transition: 0.3s left ease-in-out;
+}
+
+.slider .item {
+  margin-right: 10px;
+}
+
+.slider .item:last-child {
+  margin-right: 0;
+}
+
+.ctrl {
+  text-align: center;
+  margin-top: 5px;
+}
+.ctrl-btn {
+  padding: 20px 20px;
+  min-width: 50px;
+  background: #fff;
+  border: none;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+
+  position: absolute;
+  top: 50%;
+  margin-top: -27.5px;
+}
+.ctrl-btn.pro-prev {
+  left: 0;
+}
+.ctrl-btn.pro-next {
+  right: 0;
+}
+.nav-icon{
+  color: gray;
+  position: absolute;
+  top:50%;
+  transform: translate(-50%);
+  font-size: 50px;
+  opacity: 0;
+}
+
+.nav-icon:hover{
+  color: #2196f3;
+}
+.owl-carousel:hover .nav-icon{
+ opacity: 1 ;
+transition: 1s;
+}
+
+.fa-chevron-circle-left{
+  left: 10px;
+}
+.fa-chevron-circle-right{
+  right: 10px;
+}
+.icon {
+  margin-top: 60px;
+  border:1px solid rgb(145, 116, 116);
+  border-radius: 8px; 
+}
+.icon a{
+color: black
+}
+
+.icon:hover{
+  margin-top: 35px;
+  border-radius: 8px;
+  border: 2px solid black;
+  transition: 0.6s
+}
+.fa-home {
+  font-size: 30px
 }
     </style>
   <body>
-       @foreach ($product_details as $key =>$value)
-   
-          <header style="height: 250px; background-color: red;"></header>
-          <nav  style="height: 50px; background-color: yellowgreen ;"></nav>
+          {{-- <nav class="navbar navbar-expand-md shadow-sm">
+            <div class="container">
+                <a href="{{ url('/index') }}" style="padding-right:3%">
+                    <img src="{{asset('images/logo.svg')}}" alt="" style="height:40px">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto" style="font-weight:bold">
+                        <li class='navbar-nav'>
+                            <a href="/index" class="nav-link active">Home</a>
+                        </li>
+                        <li class='navbar-nav'>
+                            <a href="/products" class="nav-link  ">Products</a>
+                        </li>
+                        <li class='navbar-nav'>
+                            <a href="/blog" class="nav-link ">Blog</a>
+                        </li>
+                        <li class='navbar-nav'>
+                            <a href="/about" class="nav-link ">About us</a>
+                        </li>
+                        <li class='navbar-nav'>
+                            <a href="/contact" class="nav-link ">Contact us</a>
+                        </li>
+                    </ul>
+    
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        <li class="navbar-nav">
+                            <a href="/shopping_cart" class="nav-link" style="font-weight:bold ;">
+                                <i style="color: black" class="fa fa-shopping-cart" aria-hidden="true"></i> shopping cart
+                            </a>
+                        </li>
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item" style="font-weight:bold">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+    
+                            @if (Route::has('register'))
+                                <li class="nav-item" style="font-weight:bold">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown" style="font-weight:bold"> 
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+    
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+    
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav> --}}
     <div style="background-color: rgb(241 240 241)">
       <div class="container" >
+          <div class="row" style="margin-bottom: 15px ; padding-top: 15px ;">
+            <span style="background-color: white ; border-radius:50% ; border: 1px solid rgb(223, 211, 211) " >
+            
+              <a href="{{ URL::to('/product/') }}">
+                <i class="fa fa-home" aria-hidden="true"></i>
+              </a>
+            </span>
+            <span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+            @foreach ($product_details as $key =>$value)
+          <span style="background-color: white ; font-size: 15px; border-radius:20px ; padding-left: 10px ; padding-right: 10px ;padding-top: 4px ; border: 1px solid rgb(223, 211, 211)">{{ $value->product_name }}</span>
+            @endforeach
+        </div>
+      
           <div class="row" style="height: 700px;">
-            <article class="col-sm-9" style="height: 650px; padding: 0; background-color: white ;  border-radius: 8px" >
+            <article class="col-sm-9" style="height: 670px; padding: 0; background-color: white ;  border-radius: 8px" >
               <div class="row" style=" height: 500px;">
                 <article class="col-sm-5" style=" height: 700px;">
-              
-
-                    <div class="row" style="height: 400px;padding: 0;">
+                    <div class="row" style="height: 350px;padding: 0;">
                       <div class="col" >
-                        {{-- <img src="{{ URL::to('/uploads/product/'.$value->product_image) }}" height="300px" width="300px" style="padding-top:30px "> --}}
-                        <ul id="imageGallery" style="margin-top: 40px">
+                        <ul id="image" style="margin-top: 40px">
                           @foreach ($gallery as $key =>$gal)
                           <li data-thumb="{{ asset('uploads/gallery/'.$gal->gallery_image) }}" data-src="{{ asset('uploads/gallery/'.$gal->gallery_image) }}">
                             <img alt="{{ $gal->gallery_name }}" width="100%" height="170px" src="{{ asset('uploads/gallery/'.$gal->gallery_image) }}" />
                           </li>
                           @endforeach
-                       
                         </ul> 
                       </div>
                     </div>
-
-                    <div class="row" style=" height: 300px;">
-                      <div >{!! $value->product_content !!} </div>
+                    @foreach ($product_details as $key =>$value)
+                  <div style="margin-top: 1px"><hr></div>
+                    <div class="row" style=" height: 450px; ">
+                      <div style="margin-left: 30px ; ">{!! $value->product_content !!} </div>
                     </div>
-            
-             
                 </article>
                 <aside class="col-sm-7" style="height: 700px;" >
                   <div class="row">
@@ -114,7 +306,8 @@ li.active {
                   <div class="row">
                     <div class="col">
                       <label>Danh mục</label>
-                      <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->category_name }}</span> <br>           
+                      <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->category_name }}</span> 
+                      <br>           
                       <label>Thương hiệu</label>
                       <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->brand_name }}</span>
                     </div>
@@ -122,36 +315,101 @@ li.active {
                   </div>
 
                   <div class="row">
-                    <div class="col" style="padding-top: 30px; color: rgb(26, 104, 194); font-size: 30px; font-weight: bold;" >{{ number_format($value->product_price).'đ' }}</div>
+                    <div class="col" style="padding-top: 30px; color: rgb(26, 104, 194); font-size: 30px; font-weight: bold;" >
+                      {{ number_format($value->product_price,0,',','.').'đ' }}
+                    </div>
                   </div>
 
                   <div class="row">
-                    <div class="style">
-                      <a href="">Mua ngay</a>
+                    <div class="style" style="margin-left: 12px ; margin-top: 20px">
+                      <a href="">Mua ngay</a> 
                       <a href="" style="background-color: blue;">Thêm vào giỏ hàng</a>
-                    </div>
+                    </div>  
                   </div>
                 </aside>
               </div>
             </article>
+            @endforeach
+            <div class="col-sm-3" style="height: 500px ; padding: 0%">
+              <div  style="padding-top: 30px; background-color: white ;height: 450px ; border-radius:8px ; margin-left: 5% ">
+                <div class="row"> 
+                  <div class="col">
+                     <div  style="font-weight: bold; font-size: 18px ; padding-left: 10px">Chính sách bán hàng</div> 
+                  </div>
+                </div> 
+                <div class="row">
+                  <div class="col csbh">
+                    <div class="row" >
+                      <div class="col-sm-2">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm-10">
+                         Miễn phí giao hàng cho đơn hàng từ 800K
+                      </div>
+                    </div>
 
-            <div class="col-sm-3" style="height: 500px">
-              <div  style="padding-top: 30px; background-color: white ;height: 450px ; margin-left: 10px ;border-radius:8px ">
-                  <div style="font-weight: bold; font-size: 18px">Chính sách bán hàng</div> 
-                  <div style="margin-top: 10px;">Miễn phí giao hàng cho đơn hàng từ 800K</div>
-                  <div>Cam kết hàng chính hãng 100%</div>
-                  <div>Đổi trả trong vòng 10 ngày</div>
-                  <div style="margin-top: 15px">
-                    <div style="font-weight: bold; font-size: 18px">Dịch vụ khác</div> 
-                    <div style="margin-top: 10px;">Sửa chữa đồng giá 150.000đ</div>
-                    <div>Vệ sinh máy tính, laptop</div>
-                    <div>Bảo hành tại nhà</div>
+                    <div class="row" >
+                      <div class="col-sm-2">
+                        <i class="fa fa-check-circle" aria-hidden="true" ></i>
+                      </div>
+                      <div class="col-sm-10">
+                        Cam kết hàng chính hãng 100%
+                      </div>
+                    </div>
+
+                    <div class="row" >
+                      <div class="col-sm-2">
+                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm-10">
+                        Đổi trả trong vòng 10 ngày
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                  <div class="row" style="margin-top: 20px">
+                    <div class="col">
+                        <div  style="font-weight: bold; font-size: 18px ; padding-left: 10px">Dịch vụ khác</div> 
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col csbh">
+                      <div class="row" >
+                        <div class="col-sm-2">
+                          <i class="fa fa-wrench" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-10">
+                          Sửa chữa đồng giá 150.000đ
+                        </div>
+                      </div>
+  
+                      <div class="row" >
+                        <div class="col-sm-2">
+                          <i class="fa fa-laptop" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-10">
+                          Vệ sinh máy tính,laptop
+                        </div>
+                      </div>
+  
+                      <div class="row" >
+                        <div class="col-sm-2">
+                          <i class="fa fa-shield" aria-hidden="true" ></i>
+                        </div>
+                        <div class="col-sm-10">
+                          Bảo hành tại nhà
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   </div>
               </div>
             </div>
-
           </div>
-
+          @foreach ($product_details as $key =>$value)
+          <div class="container">
           <div class="row" style="background-color: white ; border-radius:8px ">
             <article class="col-sm-8" style="">
               <div class="row" style="font-weight: bold ; font-size: 20px ; padding-top: 10px">
@@ -161,49 +419,46 @@ li.active {
                 <div>
                   {!! $value->product_desc !!}                   
                 </div>
-
-                  <a href="javascript:void();" class="readmore-btn">Read More</a>
+                  <a href="javascript:void();" class="readmore-btn">Xem thêm thông tin</a>
               </div>
             </article>
-            <aside class="col-sm-4">
+            <aside class="col-sm-4" >
               <div class="row">
-                <div class="col" style="font-weight: bold ; font-size: 20px ;padding-top: 10px">
+                <div class="col" style="font-weight: bold ; font-size: 20px ;padding-top: 10px ">
                 | Thông số kỹ thuật
                 </div>
               </div>
-
-            <div class="container">
               <div class="row">
-                <div class="col">
-          
-                 <table class="table table-striped" style="margin-top: 15px">
+                <div class="col box">
+                    <div >
+                 <table class="table table-striped" style="margin-top: 15px" >
                   @foreach ( $product_desc as $key => $desc )
                     <tr>
-                      <th>Thương hiệu</th>
+                      <th style="width: 140px ;">Thương hiệu</th>
                       <td style="word-break: break-word;">{{ $desc->brand_name }}</td>
                     </td>
                     <tr>
-                      <th>Bảo hành</th>
+                      <th style="">Bảo hành</th>
                       <td style="word-break: break-word;">{{ $desc->desc_guarantee }}</td>
                     </tr>
                     <tr>
-                      <th>Mô tả bảo hành</th>
+                      <th style="">Mô tả bảo hành</th>
                       <td style="word-break: break-word;">{{ $desc->desc_warranty }}</td>
                     </tr>
                     <tr>
-                      <th>Series laptop</th>
+                      <th style="">Series laptop</th>
                       <td style="word-break: break-word;">{{ $desc->desc_serieslaptop }}</td>
                     </tr>
                     <tr>
-                      <th>Part-number</th>
+                      <th style="">Part-number</th>
                       <td style="word-break: break-word;">{{ $desc->desc_partnumber }}</td>
                     </tr>
                     <tr>
-                      <th>Thế hệ CPU</th>
+                      <th >Thế hệ CPU</th>
                       <td style="word-break: break-word;">{{ $desc->desc_CPUgeneration }}</td>
                     </tr>
                     <tr>
-                      <th>CPU</th>
+                      <th >CPU</th>
                       <td style="word-break: break-word;">{{ $desc->desc_CPU}}</td>
                     </tr>
                     <tr>
@@ -217,17 +472,14 @@ li.active {
                     @endforeach
                   </table> 
                 </div>
+                </div>
               </div>
-            </div>
-
               {{-- Start: Xem thêm thông số kỹ thuật --}}
               <div class="row"> 
                 <div class="col" >
-                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId" style="font-size: 15px">
                     Xem thêm thông số kỹ thuật
                   </button>
-                  
-                        
       <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" >
         <div class="modal-dialog " role="document" style="padding-top: 5px ;padding-right: 1100px;">
             <div class="modal-content " style="width: 1150px ">
@@ -295,14 +547,12 @@ li.active {
                             <th >Pin</th>
                             <td style="word-break: break-word;">{{ $desc->desc_battery}}</td>
                         </tr>
-                
                         <tr>
                             <th>RAM</th>
                             <td style="word-break: break-word;">{{ $desc->desc_ram}}</td>
                             <th >Khối lượng</th>
                             <td style="word-break: break-word;">{{ $desc->desc_weight}}</td>
                         </tr>
-                
                         <tr>
                             <th>Màn hình</th>
                             <td style="word-break: break-word;">{{ $desc->desc_screen}}</td>
@@ -315,8 +565,6 @@ li.active {
                             <th >Đèn LED trên máy</th>
                             <td style="word-break: break-word;">{{ $desc->desc_accessories}}</td>
                         </tr>
-                  
-                
                         <tr>
                             <th>Số cổng lưu trữ tối đa</th>
                             <td style="word-break: break-word;">{{ $desc->desc_maxstorage}}</td>
@@ -335,22 +583,74 @@ li.active {
             </aside>
           </div>
         </div>
-      </div> 
+
+        <div class="container" style="background-color: white ; margin-top: 30px ; border-radius:8px ; height: 400px;" >
+          <div class="row" style="font-weight: bold ; font-size: 18px; padding-top: 10px">
+            | Sản phẩm cùng thương hiệu {{ $value->brand_name }}
+          </div>
          
-       
+            <div class="owl-carousel owl-theme">
+              @foreach ($ralate as $key =>$lienquan )
+                <div class="col icon" >
+                  <a href="{{ URL::to('/chi-tiet-san-pham/'.$lienquan->product_id)}}">
+                    <div class="item" style="word-break: break-all">  
+                      <img src="{{ URL::to('uploads/product/'.$lienquan->product_image) }}" height="150px" width="150px"> 
+                      <div class="row">
+                          <div class="ten">
+                            <div style="font-weight: bold">{{ $lienquan->product_name }}</div>
+                            <div style="font-weight: bold ; color: #2196f3">{{ number_format($lienquan->product_price,0,',','.') }}đ</div>
+                          </div>
+                      </div>
+                    </div>
+                  </a> 
+                </div>
+              @endforeach
+            </div>
+      </div>
+    </div>
         @endforeach
-        <div class="row" style="background-color: lime; margin: 0;">
-          <div class="col" style="color: white;">Sản phẩm liên quan</div>
-        </div>
-        <footer style="height: 200px; background-color: khaki;"></footer>
-      
-     
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('owl/owl.carousel.min.js') }}"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            items:4,
+            NotIn:true,
+            margin:15,
+            loop:true,
+            nav:true,
+            autoplay:true,
+            dots:false,
+            autoplayTimeout:5000,
+            navText:['<i class="fa fa-chevron-circle-left nav-icon" aria-hidden="true"></i>',
+            '<i class="fa fa-chevron-circle-right nav-icon" aria-hidden="true"></i>']
+    });
+    </script>
+      <script src="{{ asset('js/lightgallery-all.min.js') }}"></script>
+      <script src="{{ asset('js/lightslider.js') }}"></script>
+      <script src="{{ asset('js/prettify.js') }}"></script>
+         <script >
+          $(document).ready(function() {
+        $('#image').lightSlider({
+            gallery:true,
+            item:1,
+            loop:true,
+            thumbItem:3,
+            slideMargin:0,
+            enableDrag: false,
+            nav:true,
+            currentPagerPosition:'left',
+            onSliderLoad: function(el) {
+                el.lightGallery({
+                    selector: '#image .lslide'
+                });
+            }   
+        });  
+      });
+        </script>
     <script>
     CKEDITOR.replace('ckeditor');
     CKEDITOR.replace('ckeditor1');
@@ -358,31 +658,9 @@ li.active {
     <script>
       $(".readmore-btn").on('click', function(){
         $(this).parent().toggleClass("showContent");
-        //Shorthand if-else statement
-        var replaceText = $(this).parent().hasClass("showContent") ? "Read Less " : "Read More";
+        var replaceText = $(this).parent().hasClass("showContent") ? "Thu gọn nội dung " : "Xem thêm nội dung";
         $(this).text(replaceText);
       });
     </script>
-    <script src="{{ asset('js/lightgallery-all.min.js') }}"></script>
-    <script src="{{ asset('js/lightslider.js') }}"></script>
-    <script src="{{ asset('js/prettify.js') }}"></script>
-        <script type="text/javascript">
-          $(document).ready(function() {
-        $('#imageGallery').lightSlider({
-            gallery:true,
-            item:1,
-            loop:true,
-            thumbItem:3,
-            slideMargin:0,
-            enableDrag: false,
-            currentPagerPosition:'left',
-            onSliderLoad: function(el) {
-                el.lightGallery({
-                    selector: '#imageGallery .lslide'
-                });
-            }   
-        });  
-      });
-        </script>
   </body>
 </html>
