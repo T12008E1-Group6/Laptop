@@ -15,8 +15,8 @@ class CreateTblProduct extends Migration
     {
         Schema::create('tbl_product', function (Blueprint $table) {
             $table->increments('product_id');
-            $table->integer('category_id');
-            $table->integer('brand_id');
+            $table->unsignedInteger('category_id');  //edit by Quang Thành
+            $table->unsignedInteger('brand_id');  //edit by Quang Thành
             $table->text('product_desc');
             $table->text('product_content');
             $table->integer('product_price');
@@ -24,6 +24,8 @@ class CreateTblProduct extends Migration
             $table->integer('product_amount');
             $table->text('product_name');
             $table->timestamps();
+            $table->foreign('category_id')->references('category_id')->on('tbl_category_product'); //edit by Quang Thành
+            $table->foreign('brand_id')->references('brand_id')->on('tbl_brand'); //edit by Quang Thành
         });
     }
 

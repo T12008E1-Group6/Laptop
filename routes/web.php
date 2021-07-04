@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/index', function(){return view('/index');});
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/contactUs', 'ContactFormController@store');
+Route::get('/contactUs','ContactFormController@index');
 
 Route::get('/userInfo/{user}','UserInfoController@userInfo')->name('userInfo.show');
 
@@ -33,10 +34,13 @@ Route::get('/about', 'AboutUsController@index');
 Route::get('/index', function(){return view("/index");});
 Route::post('/index', 'ContactFormController@store');
 
+Route::post('/index', 'ContactFormController@store');
 
+Route::get('/userShow', 'AdminUserController@index');
 
+Route::get('/adminDeleteUser/{id}','AdminUserController@delete');
 
-
+Route::get('/adminUserChangeActive/{id}','AdminUserController@adminChangeActive');
 
 
 
@@ -281,3 +285,141 @@ Route::post('insert-gallery/{pro_id}', 'GalleryController@insert_gallery');
 Route::post('update-gallery-name', 'GalleryController@update_gallery_name');
 Route::post('delete-gallery', 'GalleryController@delete_gallery');
 Route::post('update-gallery', 'GalleryController@update_gallery');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Quang thành Routes
+Route::get('/laptops-show', 'ProductController@QTindex')->name('laptops.show');
+
+Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addToCart');
+Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
+Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')->name('cart.removeFromCart');
+
+Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
+Route::post('/checkout', 'CartController@postCheckout')->name('checkout');

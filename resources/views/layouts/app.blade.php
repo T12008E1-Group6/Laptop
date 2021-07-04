@@ -15,6 +15,7 @@
     <!-- Fontawesome-->
     <script src="https://use.fontawesome.com/4c66e35559.js"></script>
 
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
@@ -43,9 +44,6 @@
                         </li>
                         <li class='navbar-nav'>
                             <a href="/products" class="nav-link  ">Products</a>
-                        </li>
-                        <li class='navbar-nav'>
-                            <a href="/blog" class="nav-link ">Blog</a>
                         </li>
                         <li class='navbar-nav'>
                             <a href="/about" class="nav-link ">About us</a>
@@ -82,7 +80,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>                                
+                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
+                                    @if(Auth::user()->role > 0)
+                                    <a href="/admin" class="dropdown-item">Admin</a>   
+                                    @endif                         
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -100,10 +101,63 @@
             </div>
         </nav>
 
-        <main>
-            <div class="py-4"></div>
+        <main style="min-height:100%">
+            <div></div>
             @yield('content')
         </main>
     </div>
 </body>
+
+<footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210); margin-top:100px">
+    <div class="bg-light">
+        <div class="container">
+            <div class="row py-4 d-flex align-items-center">
+                <div class="col-md-12 text-center">
+                    <a href=""><i class="fab fa-facebook mr-4"></i></a>
+                    <a href=""><i class="fab fa-twitter mr-4"></i></a>
+                    <a href=""><i class="fab fa-google-plus-g mr-4"></i></a>
+                    <a href=""><i class="fab fa-instagram mr-4"></i></a>
+                    <a href=""><i class="fab fa-linkedin-in mr-4"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center text-md-left mt-5">
+        <div class="row">
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Dvice</h6>
+                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+            </div>
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Discover more</h6>
+                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+            <ul class="list-unstyled">
+                <li class="my-2"><a href="">Apple</a></li>
+                <li class="my-2"><a href="">Asus</a></li>
+                <li class="my-2"><a href="">Lenovo</a></li>
+                <li class="my-2"><a href="">Samsung</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 mx-auto mb-4">
+            <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+            <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+            <ul class="list-unstyled">
+                <li class="my-2"><a href="">Product</a></li>
+                <li class="my-2"><a href="">About Us</a></li>
+                <li class="my-2"><a href="">Blogs</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 mx-auto mb-4">
+            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+            <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+            <ul class="list-unstyled">
+                <li class="my-2"><i class="fas fa-home"></i> CMT8 str, District 3, HCM city</li>
+                <li class="my-2"><i class="far fa-envelope"></i> Dvice@gmail.com</li>
+                <li class="my-2"><i class="fas fa-phone"></i> +84 912345678</li>
+            </ul>
+        </div>
+        
+</footer>
 </html>
