@@ -20,6 +20,34 @@
                             ?>
                             </div>
                             @csrf
+                            {{-- <div class="form-group">
+                                <label for="" >Id</label>
+                                <select name="product_id" class="form-control input-sm m-bot15">
+                                    @foreach ($id_product as $key =>$id)
+                                        @if($id->product_id==$id->product_id)
+                                          <option selected value="{{ $id ->product_id }}">{{ $id ->product_id }}</option>
+                                        @else
+                                          <option value="{{ $id ->product_id }}">{{ $id ->product_id }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @if($errors->has('product_id'))
+                                <div class="error-text">
+                                    {{$errors->first('product_id')}}
+                                 </div>
+                                 @endif
+                            </div> --}}
+                            <div class="form-group">
+                                <label for="">ID</label>
+                                <input type="text" name="product_id" class="form-control" readonly value="{{ $desc->product_id }}">
+                                @if($errors->has('product_id'))
+                            <div class="error-text">
+                                {{$errors->first('product_id')}}
+                             </div>
+                        @endif
+                            </div>
+
+
                             <div class="form-group">
                                 <label for="" >Thương hiệu</label>
                                 <select name="product_brand" class="form-control input-sm m-bot15">
@@ -59,7 +87,7 @@
                                 <div class="error-text">
                                     {{$errors->first('desc_warranty')}}
                                  </div>
-                            @endif
+                                 @endif
                         </div>
     
                             <div class="form-group">

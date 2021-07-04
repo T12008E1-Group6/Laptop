@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <div class="position-center">
                         
-                        <form role="form" action="{{URL::to('/save-desc')}}" method="POST">
+                        <form role="form" action="{{URL::to('/save-desc/{desc_id}')}}" method="POST">
                             <div>
                                 <?php
                             $message = Session::get('message');

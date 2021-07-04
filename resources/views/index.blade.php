@@ -7,7 +7,52 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Dvice') }}</title>
+</head>
+<body>
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/Carousel1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="images/Carousel2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="images/Carousel3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-12 title">
+                    <h1 class="title-link">
+                        <a href="">
+                            Best sellers    
+                            <i class="fas fa-arrow-circle-right"></i>  
+                        </a>
+                    </h1>
+
+                </div>
+            </div>
+            <div class="row py-2 mb-3">
+                <div class="col-md-3">
+                    
+                </div>
+
+                <div class="col-md-3">
+                    
+                </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

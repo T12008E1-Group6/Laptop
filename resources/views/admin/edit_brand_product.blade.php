@@ -10,7 +10,7 @@
                     @foreach ($edit_brand_product as $key => $edit_value )
                     <div class="position-center">
                         
-                        <form role="form" action="{{URL::to('/update-brand-product/'.$edit_value->brand_id)}}" method="POST">
+                        <form role="form" action="{{URL::to('/update-brand-product/'.$edit_value->brand_id)}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên thương hiệu</label>
@@ -27,6 +27,17 @@
                             @if($errors->has('brand_product_desc'))
                             <div class="error-text">
                                 {{$errors->first('brand_product_desc')}}
+                             </div>
+                        @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Hình ảnh thương hiệu</label>
+                            <input type="file" name="brand_image" class="form-control">
+                            <img src="{{URL::to('/uploads/product/'.$edit_value->brand_image)}}" height="100" width="100">
+                            @if($errors->has('brand_image'))
+                            <div class="error-text">
+                                {{$errors->first('brand_image')}}
                              </div>
                         @endif
                         </div>

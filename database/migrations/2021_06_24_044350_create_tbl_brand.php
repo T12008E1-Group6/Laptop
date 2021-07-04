@@ -17,6 +17,7 @@ class CreateTblBrand extends Migration
             $table->increments('brand_id');
             $table->string('brand_name');
             $table->text('brand_desc');
+            $table->string('brand_image');
             $table->timestamps();
         });
     }
