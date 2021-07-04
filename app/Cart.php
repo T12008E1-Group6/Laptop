@@ -24,7 +24,7 @@ class Cart
         $groupItem = [
             'qty' => 1,
             'price' => $pickingItem->product_price,
-            'item' => $pickingItem,
+            'item' => json_decode(json_encode($pickingItem), TRUE),
             'subtotalPrice' => $pickingItem->product_price
         ];
 

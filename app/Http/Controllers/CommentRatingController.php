@@ -82,4 +82,8 @@ class CommentRatingController extends Controller
     {
         //
     }
+
+    public function admin_management() {
+        return view('comment_rating.admin_comment_rating');
+    }
 }

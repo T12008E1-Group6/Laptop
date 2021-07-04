@@ -16,6 +16,7 @@ class OrdersController extends Controller
        
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +46,21 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        switch ($id) {
+            case 'waiting-delivery':
+                return view('order.waitDelivery');
+                break;
+            
+            case 'waiting-payment':
+                return view('order.waitPayment');
+
+            case 'finish':
+                return view('order.finish');
+            
+            default:
+                return view('order.details');
+                break;
+        }
     }
 
     /**
@@ -80,5 +95,9 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function admin_management() {
+        return view('order.admin_order_management');
     }
 }

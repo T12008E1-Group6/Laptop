@@ -410,3 +410,8 @@ Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')->name('
 
 Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
 Route::post('/checkout', 'CartController@postCheckout')->name('checkout');
+
+Route::resource('/orders', 'OrdersController');
+
+Route::get('/admin/orders', 'OrdersController@admin_management');
+Route::get('/admin/comment-rating', 'CommentRatingController@admin_management');

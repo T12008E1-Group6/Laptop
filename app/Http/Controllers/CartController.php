@@ -22,13 +22,21 @@ class CartController extends Controller
     }
 
     public function getCart() {
-        if($this->cart == null) $this->cart = new Cart();
+        if($this->cart == null) {
+            $this->cart = new Cart();
+            Session::put('cart', $this->cart);
+        }
         // DD($this->cart);
         return view('cart.cart', ['cart' => $this->cart]);
     }
     
     public function getCheckout() {
-        if($this->cart == null) $this->cart = new Cart();
+        if (isset($_COOKIE['modifiedCart'])) {
+            $modifiedCart = (object) json_decode($_COOKIE['modifiedCart'], TRUE);
+            Session::put('cart', $modifiedCart);
+            setcookie('modifiedCart',"", time() - 3600); //delete this cookie
+        }
+        $this->cart = Session::get('cart');
         return view('cart.checkout', ['cart' => $this->cart]);
     }
 
