@@ -51,6 +51,17 @@
                         <li class='navbar-nav'>
                             <a href="/contact" class="nav-link ">Contact us</a>
                         </li>
+                        <li class="navbar-nav form-group">
+                            <div >
+                                <form method="GET" action="{{route('search')}}" style="display:flex">				
+                                <input class="form-control" name="search" style="margin-left:10px; width:290px">
+                                @csrf
+                                <button class="btn btn-primary" style="height:37px">   
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                </form>     
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
