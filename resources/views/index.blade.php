@@ -1,11 +1,6 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
 
 </head>
 <body>
@@ -30,15 +25,15 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-    </div>
+      </div>
 
     <div>
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-12 title">
+                <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.3)">
                     <h1 class="title-link">
                         <a href="">
-                            Best sellers    
+                            New Arrivals    
                             <i class="fas fa-arrow-circle-right"></i>  
                         </a>
                     </h1>
@@ -46,110 +41,199 @@
                 </div>
             </div>
             <div class="row py-2 mb-3">
-                <div class="col-md-3">
-                    
-                </div>
-
-                <div class="col-md-3">
-                    
-                </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="jquery.min.js"></script>
-    <!-- Fontawesome-->
-    <script src="https://use.fontawesome.com/4c66e35559.js"></script>
-
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
- 
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbackground shadow-sm">
-            <div class="container">
-                <a href="{{ url('/index') }}" style="padding-right:3%">
-                    <img src="{{asset('images/logo.svg')}}" alt="" style="height:40px">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto" style="font-weight:bold">
-                        <li class='navbar-nav'>
-                            <a href="/index" class="nav-link active">Home</a>
-                        </li>
-                        <li class='navbar-nav'>
-                            <a href="/products" class="nav-link  ">Products</a>
-                        </li>
-                        <li class='navbar-nav'>
-                            <a href="/about" class="nav-link ">About us</a>
-                        </li>
-                        <li class='navbar-nav'>
-                            <a href="/contact" class="nav-link ">Contact us</a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        <li class="navbar-nav">
-                            <a href="/shopping_cart" class="nav-link" style="font-weight:bold">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> shopping cart
-                            </a>
-                        </li>
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item" style="font-weight:bold">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item" style="font-weight:bold">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown" style="font-weight:bold"> 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
-                                    @if(Auth::user()->role > 0)
-                                    <a href="/admin" class="dropdown-item">Admin</a>   
-                                    @endif                         
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+               @foreach($NewProduct as $pro)
+                    <div class="col-md-3 py-2">
+                        <div class="product-section card">
+                            <div class="product-top" style="padding-top:1.5vh; justify-content:center;align-items:center;text-align:center">
+                                <img src="{{$pro->product_image}}" alt="" class="img-card" height="235vh" width="235vh" style="border: 1px solid rgba(199, 199, 199, 0.3
+    616); border-radius: 2px;">
+                                <div class="overlay" style="margin-top:5px">
+                                    <button class="btn btn-primary" type="button" title="Add to cart"><i class="fas fa-cart-arrow-down"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-heart"></i></button>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            </div>
+                            <div class="product-bottom text-center" style="color:black; padding-bottom:1.5vh;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <h5>{{$pro->product_name}}</h5>
+                                <h5>${{$pro->product_price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+         </div>
+
+        </div>
+
+
+        <div>
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.3)">
+                        <h1 class="title-link">
+                            <a href="">
+                                Best Products    
+                                <i class="fas fa-arrow-circle-right"></i>  
+                            </a>
+                        </h1>
+    
+                    </div>
+                </div>
+                <div class="row py-2 mb-3">
+                    @foreach($BestProduct as $pro)
+                    <div class="col-md-3 py-2">
+                        <div class="product-section card">
+                            <div class="product-top" style="padding-top:1.5vh; justify-content:center;align-items:center;text-align:center">
+                                <img src="{{$pro->product_image}}" alt="" class="img-card" height="235vh" width="235vh" style="border: 1px solid rgba(199, 199, 199, 0.3
+    616); border-radius: 2px;">
+                                <div class="overlay" style="margin-top:5px">
+                                    <button class="btn btn-primary" type="button" title="Add to cart"><i class="fas fa-cart-arrow-down"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                                    <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-bottom text-center" style="color:black; padding-bottom:1.5vh;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <h5>{{$pro->product_name}}</h5>
+                                <h5>${{$pro->product_price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+             </div>
+    
+    
+            </div>
+            <div>
+                <div class="container py-4">
+                    <div class="row">
+                        <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.3)">
+                            <h1 class="title-link">
+                                <a href="">
+                                    Suggesting Products    
+                                    <i class="fas fa-arrow-circle-right"></i>  
+                                </a>
+                            </h1>
+        
+                        </div>
+                    </div>
+                    <div class="row py-2 mb-3">
+                        @foreach($SuggestingProduct as $pro)
+                        <div class="col-md-3 py-2">
+                            <div class="product-section card">
+                                <div class="product-top" style="padding-top:1.5vh; justify-content:center;align-items:center;text-align:center">
+                                    <img src="{{$pro->product_image}}" alt="" class="img-card" height="235vh" width="235vh" style="border: 1px solid rgba(199, 199, 199, 0.3
+        616); border-radius: 2px;">
+                                    <div class="overlay" style="margin-top:5px">
+                                        <button class="btn btn-primary" type="button" title="Add to cart"><i class="fas fa-cart-arrow-down"></i></button>
+                                        <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+                                        <button class="btn btn-primary" type="button" title="Compare"><i class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-bottom text-center" style="color:black; padding-bottom:1.5vh;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <h5>{{$pro->product_name}}</h5>
+                                    <h5>${{$pro->product_price}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                 </div>
+        
+        
+                </div>
+    
+            
+
+    <div class="container py-4">
+        <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128,)">
+            <h1 class="title-link">
+                <a href="/blog">
+                    About us <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </h1>
+        </div>
+        <div class="row py-4">
+            <div class="col-md-12">
+                <div style="background-image: url('images/blogImg.jpg'); justify-content:center; text-align:center; align-items:center; height:50vh">
+                    <div style="padding-top:50px;">
+                        <h1 style="font-size:5vh; font-weight:300; color:white">
+                            Read our story
+                        </h1>
+                        <h1 >
+                            <a href="/about" style="font-size:20vh; font-weight:900; color: white">About Us
+                            </a>
+                        </h1>
+                        <a href="/about" class="h5 py-4">
+                            to our story <i class="fas fa-arrow-circle-right"></i>
+                        </a>      
+                    </div> 
                 </div>
             </div>
-        </nav>
+        </div>
+    </div>
 
-        <main>
-            @yield('content')
-        </main>
+    <div class="container py-4" >
+        <div class="row">
+            <div class="col-md-12 title" style="border-bottom: solid 1px rgba(128, 128, 128, 0.3)">
+                <h1 class="title-link">
+                    <a href=""> Contact Us</a>
+                </h1>
+            </div>            
+        </div>
+
+        <div class="py-4">
+            <h1 style="text-align:center; display:flex; align-items:center; justify-content:center;font-weight:800; color:#231F20;font-size:10vh;">
+                Contact Us
+            </h1>
+        </div>
+        <div class="h3" style="display:flex; align-items:center;text-align:center; justify-content:center">
+            Your voice matters
+        </div>
+        <div class="py-4">
+            <div class="contact-form">
+                <form action="" method="post" style="text-align: center; justify-content: center">
+                    @csrf
+                    <div class="py-2" style="display:flex">
+                        <div class="col-md-1" style="align-items:left">
+                            Name
+                        </div>
+                        <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="py-2" style="display:flex" >
+                        <div class="col-md-1" style="align-items:left">
+                            Mail
+                        </div>
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="py-2" style="display:flex">
+                        <div class="col-md-1" style="align-items:left">
+                            Mess
+                        </div>
+                        <textarea name="message" class="form-control" placeholder="Message" row="4" required></textarea>
+                    </div>
+                    <div class="py-4">
+                        <div class="col-md-2" style="float:right">
+                            <button class="btn btn-primary form-control submit" type="submit">Send</button>
+                        </div>
+                    </div>
+                        
+                    </div>                    
+                </form>
+            </div>
+        </div>
     </div>
 </body>
-
-</html>
+@endsection
