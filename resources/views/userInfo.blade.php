@@ -7,7 +7,7 @@
     <div class="sidebar">
       <a class="active" href="#home">User Info</a>
       <a href="#">Payment method</a>
-      <a href="/userOrder/{{$user->id}}">Orders</a>
+      <a href="/user-orders/all">Your orders</a>
       <a href="#about">History</a>
     </div>
     

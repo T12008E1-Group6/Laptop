@@ -31,12 +31,14 @@ class CartController extends Controller
     }
     
     public function getCheckout() {
+        $this->cart = new Cart();
         if (isset($_COOKIE['modifiedCart'])) {
             $modifiedCart = (object) json_decode($_COOKIE['modifiedCart'], TRUE);
-            Session::put('cart', $modifiedCart);
+            $this->cart->cartItems = $modifiedCart->cartItems;
             setcookie('modifiedCart',"", time() - 3600); //delete this cookie
         }
-        $this->cart = Session::get('cart');
+        Session::put('cart', $this->cart);
+        // DD($this->cart);s
         return view('cart.checkout', ['cart' => $this->cart]);
     }
 

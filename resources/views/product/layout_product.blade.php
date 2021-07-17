@@ -108,9 +108,11 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     <li class="navbar-nav">
-                        <a href="/shopping_cart" class="nav-link" style="font-weight:bold ;">
-                            <i style="color: black" class="fa fa-shopping-cart" aria-hidden="true"></i> shopping cart
-                        </a>
+                        <a class="nav-link" href="{{ route('cart.shoppingCart') }}" tabindex="-1" aria-disabled="true">
+                            Shopping Cart 
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge rounded-circle" style="background-color: gold; position: relative; top: -10px; left: -20px">{{ Session::has('cart') ? Session::get('cart')->sum_qty() : '' }}</span>
+                          </a>
                     </li>
                     @guest
                         @if (Route::has('login'))

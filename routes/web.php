@@ -421,10 +421,18 @@ Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addTo
 Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
 Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')->name('cart.removeFromCart');
 
-Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
-Route::post('/checkout', 'CartController@postCheckout')->name('checkout');
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
+    Route::post('/checkout', 'CartController@postCheckout')->name('checkout');
+    Route::get('/user-orders/{stage}', 'OrdersController@user_index')->name('user.orders');
+});
 
-Route::resource('/orders', 'OrdersController');
+Route::post('/checkout-stripe', 'StripePaymentController@postStripePayment')->name('checkout.stripe');
+
+Route::resource('/orders', 'OrdersController')->except([
+    'create', 'edit', 'index'
+]);
+
 
 Route::get('/admin/orders', 'OrdersController@admin_management');
 Route::get('/admin/comment-rating', 'CommentRatingController@admin_management');

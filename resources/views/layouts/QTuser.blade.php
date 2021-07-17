@@ -7,29 +7,28 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Dvice') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="jquery.min.js"></script>
-    <!-- Fontawesome-->
-    <script src="https://use.fontawesome.com/4c66e35559.js"></script>
-
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
+    <title>@yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
- 
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fontawesome-->
+    <script src="https://kit.fontawesome.com/6533f8a88f.js" crossorigin="anonymous"></script>
+
+    {{-- Bootstrap v5 --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    @yield('internalCSS')
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbackground shadow-sm">
             <div class="container">
-                <a href="{{ url('/index') }}" style="padding-right:3%">
+                <a href="{{ url('/product') }}" style="padding-right:3%">
                     <img src="{{asset('images/logo.svg')}}" alt="" style="height:40px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -43,7 +42,7 @@
                             <a href="/index" class="nav-link active">Home</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/products" class="nav-link  ">Products</a>
+                            <a href="/product" class="nav-link  ">Products</a>
                         </li>
                         <li class='navbar-nav'>
                             <a href="/about" class="nav-link ">About us</a>
@@ -108,7 +107,11 @@
             @yield('content')
         </main>
     </div>
+
+
 </body>
+
+
 
 <footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210); margin-top:100px">
     <div class="bg-light">
