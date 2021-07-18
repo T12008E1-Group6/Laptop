@@ -23,8 +23,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('css/morris.css') }}" type="text/css"/>
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('css/monthly.css') }}">
-<!-- //calendar -->
-<!-- //font-awesome icons -->
+<link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
+<link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet">
 <script src="{{ asset('js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('js/raphael-min.js') }}"></script>
 <script src="{{ asset('js/morris.js') }}"></script>
@@ -50,17 +50,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <input type="text" class="form-control search" placeholder=" Search">
         </li>
         <!-- user login dropdown start-->
-        <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="">
-                <span class="username">Thanh</span>
-                <b class="caret"></b>
+      
+        <li class="nav-item dropdown" style="font-weight:bold"> 
+            
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
             </a>
-            <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
-            </ul>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
+                @if(Auth::user()->role > 0)
+                <a href="/product" class="dropdown-item">Product</a>   
+                @endif                         
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
         </li>
       
        
