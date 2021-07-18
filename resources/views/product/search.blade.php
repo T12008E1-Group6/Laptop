@@ -1,8 +1,8 @@
 @extends('product.layout_product')
 @section('product_content')
 <div class="features_items"><!--features_items-->
-    <h2 class="title text-center" style="margin-top: 5px">Tất cả sản phẩm </h2>
-    @foreach ($show_product as $key =>$show)
+    <h2 class="title text-center" style="margin-top: 5px">Danh mục tìm kiếm</h2>
+    @foreach ($search_product as $key =>$show)
 
         <div class="col-sm-4" >
             <div style="height: 310px">
@@ -97,7 +97,7 @@
             </div>
         </div>
     @endforeach
-    {{-- <p >{{$show_product->links() }}</p> --}}
+   
 </div><!--features_items-->		
 
 

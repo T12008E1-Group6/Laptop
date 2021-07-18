@@ -31,10 +31,6 @@
         </div>
       </div> --}}
 
-
-<div class="container">
-      <div class="row">
-        <div class="col">
     <table class="table table-striped">
       <?php
       $message = Session::get('message');
@@ -68,10 +64,6 @@
             @endforeach 
         </tbody>
     </table>
-    </div>
-    </div>
-  </div>
-
       <footer class="panel-footer">
         <div class="row">
           

@@ -11,9 +11,14 @@
     <link href="{{ asset('css/prettify.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('icon_font/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('owl/assets/owl.carousel.min.css') }}">
-    {{-- <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('owl/assets/owl.theme.default.css') }}">
+
+
+    
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
    
   </head> 
   <style>
@@ -187,7 +192,7 @@ color: black
 }
     </style>
   <body>
-          {{-- <nav class="navbar navbar-expand-md shadow-sm">
+          <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a href="{{ url('/index') }}" style="padding-right:3%">
                     <img src="{{asset('images/logo.svg')}}" alt="" style="height:40px">
@@ -259,7 +264,7 @@ color: black
                     </ul>
                 </div>
             </div>
-        </nav> --}}
+        </nav>
     <div style="background-color: rgb(241 240 241)">
       <div class="container" >
           <div class="row" style="margin-bottom: 15px ; padding-top: 15px ;">
@@ -306,10 +311,15 @@ color: black
                   <div class="row">
                     <div class="col">
                       <label>Danh mục</label>
-                      <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->category_name }}</span> 
-                      <br>           
+                      <a href="{{ url::to('/danh-muc-san-pham/'.$value->product_id) }}">
+                         <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->category_name }}</span> 
+                      </a>
+                      <br>        
+                    
                       <label>Thương hiệu</label>
+                      <a href="{{ url::to('/thuong-hieu-san-pham/'.$value->product_id) }}">   
                       <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->brand_name }}</span>
+                    </a>
                     </div>
       
                   </div>
@@ -586,7 +596,14 @@ color: black
 
         <div class="container" style="background-color: white ; margin-top: 30px ; border-radius:8px ; height: 400px;" >
           <div class="row" style="font-weight: bold ; font-size: 18px; padding-top: 10px">
+            <div class="col">
             | Sản phẩm cùng thương hiệu {{ $value->brand_name }}
+             </div>
+             <a href="{{ url::to('/thuong-hieu-san-pham/'.$value->brand_id) }}">   
+            <div class="col" style="text-align: right">
+             Xem tất cả 
+            </a>
+            </div>
           </div>
          
             <div class="owl-carousel owl-theme">
@@ -608,6 +625,58 @@ color: black
             </div>
       </div>
     </div>
+    <footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210)">
+      <div class="bg-light">
+          <div class="container">
+              <div class="row py-4 d-flex align-items-center">
+                  <div class="col-md-12 text-center">
+                      <a href=""><i class="fab fa-facebook mr-4"></i></a>
+                      <a href=""><i class="fab fa-twitter mr-4"></i></a>
+                      <a href=""><i class="fab fa-google-plus-g mr-4"></i></a>
+                      <a href=""><i class="fab fa-instagram mr-4"></i></a>
+                      <a href=""><i class="fab fa-linkedin-in mr-4"></i></a>
+  
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container text-center text-md-left mt-5">
+          <div class="row">
+              <div class="col-md-3 mx-auto mb-4">
+                  <h6 class="text-uppercase font-weight-bold">Dvice</h6>
+                  <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                  <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+              </div>
+              <div class="col-md-3 mx-auto mb-4">
+                  <h6 class="text-uppercase font-weight-bold">Discover more</h6>
+                  <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+              <ul class="list-unstyled">
+                  <li class="my-2"><a href="">Apple</a></li>
+                  <li class="my-2"><a href="">Asus</a></li>
+                  <li class="my-2"><a href="">Lenovo</a></li>
+                  <li class="my-2"><a href="">Samsung</a></li>
+              </ul>
+          </div>
+          <div class="col-md-3 mx-auto mb-4">
+              <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+              <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+              <ul class="list-unstyled">
+                  <li class="my-2"><a href="">Product</a></li>
+                  <li class="my-2"><a href="">About Us</a></li>
+                  <li class="my-2"><a href="">Blogs</a></li>
+              </ul>
+          </div>
+          <div class="col-md-3 mx-auto mb-4">
+              <h6 class="text-uppercase font-weight-bold">Contact</h6>
+              <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+              <ul class="list-unstyled">
+                  <li class="my-2"><i class="fas fa-home"></i> CMT8 str, District 3, HCM city</li>
+                  <li class="my-2"><i class="far fa-envelope"></i> Dvice@gmail.com</li>
+                  <li class="my-2"><i class="fas fa-phone"></i> +84 912345678</li>
+              </ul>
+          </div>
+          
+  </footer>
         @endforeach
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
