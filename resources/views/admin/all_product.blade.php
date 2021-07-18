@@ -31,7 +31,7 @@
         </div>
       </div> --}}
 
-      <div class="table-responsive">
+     
         <table class="table table-striped b-t b-light">  
           <?php
         $message = Session::get('message');
@@ -82,7 +82,6 @@
             @endforeach
           </tbody>
         </table>
-      </div>
 
       
       <footer class="panel-footer">

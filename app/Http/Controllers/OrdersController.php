@@ -100,4 +100,8 @@ class OrdersController extends Controller
     public function admin_management() {
         return view('order.admin_order_management');
     }
+
+    public function admin_report(){
+        return view('order.admin_report');
+    }
 }
