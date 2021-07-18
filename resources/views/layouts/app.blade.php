@@ -43,7 +43,7 @@
                             <a href="/index" class="nav-link active">Home</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/products" class="nav-link  ">Products</a>
+                            <a href="{{ ('/product') }}" class="nav-link  ">Products</a>
                         </li>
                         <li class='navbar-nav'>
                             <a href="/about" class="nav-link ">About us</a>

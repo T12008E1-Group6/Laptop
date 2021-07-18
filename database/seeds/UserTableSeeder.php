@@ -24,6 +24,16 @@ class UserTableSeeder extends Seeder
         ]);
 
         User::create([
+            'name' => 'thanh',
+            'email' => 'maicongthanh45261@gmail.com',
+            'address' => '237 dang thuy tram',
+            'phone' => '0869047367',
+            'password' => Hash::make('123456789'),
+            'role' => 'admin',
+            'active' => 1
+        ]);
+
+        User::create([
             'name' => 'linh',
             'email' => 'linh@gmail.com',
             'address' => '237 dang thuy tram',
