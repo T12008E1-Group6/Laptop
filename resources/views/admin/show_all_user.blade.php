@@ -60,7 +60,7 @@
                         Deactivated
                         @endif
                     </td>
-                    <td><a href="/adminDeleteUser/{{$user->id}}"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><a href="/adminDeleteUser/{{$user->id}}" onclick="return confirm('Do you want to Delete ?')"><button class="btn btn-danger">Delete</button></a></td>
                     <td><a href="/adminUserChangeActive/{{$user->id}}"><button class="btn 
                         @if($user->active == 0)
                         btn-success">
