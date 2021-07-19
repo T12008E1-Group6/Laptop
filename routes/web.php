@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/index', function(){return view('/index');});
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/contactUs', 'ContactFormController@store');
+Route::get('/contactUs','ContactFormController@index');
 
 Route::get('/userInfo/{user}','UserInfoController@userInfo')->name('userInfo.show');
 
@@ -33,10 +34,13 @@ Route::get('/about', 'AboutUsController@index');
 Route::get('/index', function(){return view("/index");});
 Route::post('/index', 'ContactFormController@store');
 
+Route::post('/index', 'ContactFormController@store');
 
+Route::get('/userShow', 'AdminUserController@index');
 
+Route::get('/adminDeleteUser/{id}','AdminUserController@delete');
 
-
+Route::get('/adminUserChangeActive/{id}','AdminUserController@adminChangeActive');
 
 
 
@@ -248,17 +252,17 @@ Route::get('/delete-product/{product_id}', 'ProductController@delete_product');
 Route::post('/update-product/{product_id}', 'ProductController@update_product'); 
 
 // Description
-Route::get('/add-desc', 'DescriptionController@add_desc');
-Route::get('/add-desc/{pro_id}', 'DescriptionController@add_desc');
+
+Route::get('/add-desc/{desc_id}', 'DescriptionController@add_desc');
 Route::get('/all-desc', 'DescriptionController@all_desc'); 
 
-Route::post('/save-desc', 'DescriptionController@save_desc'); 
+Route::post('/save-desc/{desc_id}', 'DescriptionController@save_desc'); 
 Route::get('/show/{desc_id}', 'DescriptionController@show');
  
-Route::get('/edit-desc/{product_id}', 'DescriptionController@edit_desc');
-Route::get('/delete-desc/{product_id}', 'DescriptionController@delete_desc');
+Route::get('/edit-desc/{desc_id}', 'DescriptionController@edit_desc');
+Route::get('/delete-desc/{desc_id}', 'DescriptionController@delete_desc');
 
-Route::post('/update-desc/{product_id}', 'DescriptionController@update_desc'); 
+Route::post('/update-desc/{desc_id}', 'DescriptionController@update_desc'); 
 
 //danh mục sản phẩm trang product
 Route::get('/danh-muc-san-pham/{category_id}', 'ProductController@show_category_product'); 
@@ -266,9 +270,18 @@ Route::get('/danh-muc-san-pham/{category_id}', 'ProductController@show_category_
 //thương hiệu sản phẩm trang product
 Route::get('/thuong-hieu-san-pham/{brand_id}', 'ProductController@show_brand_product'); 
 
+//show product by price
+Route::get('/price1', 'ProductController@price_one'); 
+Route::get('/price2', 'ProductController@price_two'); 
+Route::get('/price3', 'ProductController@price_three'); 
+Route::get('/price4', 'ProductController@price_four'); 
+
 
 //show Product
-Route::get('product', 'ProductController@show_product');
+Route::get('/product', 'ProductController@show_product');
+
+//search product
+Route::post('/tim-kiem', 'ProductController@search');
 
 
 //Details Product
@@ -281,3 +294,147 @@ Route::post('insert-gallery/{pro_id}', 'GalleryController@insert_gallery');
 Route::post('update-gallery-name', 'GalleryController@update_gallery_name');
 Route::post('delete-gallery', 'GalleryController@delete_gallery');
 Route::post('update-gallery', 'GalleryController@update_gallery');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Quang thành Routes
+Route::get('/laptops-show', 'ProductController@QTindex')->name('laptops.show');
+
+Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addToCart');
+Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
+Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')->name('cart.removeFromCart');
+
+Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
+Route::post('/checkout', 'CartController@postCheckout')->name('checkout');
+
+Route::resource('/orders', 'OrdersController');
+
+Route::get('/admin/orders', 'OrdersController@admin_management');
+Route::get('/admin/comment-rating', 'CommentRatingController@admin_management');
+

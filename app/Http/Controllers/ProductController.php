@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductIMGRequest;
 use App\Gallery;
+use App\product;
+
 use File;
+
 
 class ProductController extends Controller
 {
@@ -75,11 +78,9 @@ class ProductController extends Controller
         $data=array();
         $data['product_name'] = $request->product_name;
         $data['product_desc'] = $request->product_desc;
-
         $data['product_content'] = $request->product_content;
         $data['product_amount'] = $request->product_amount;
         $data['product_price'] = $request->product_price;
-
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $get_image = $request->file('product_image');
@@ -149,9 +150,9 @@ class ProductController extends Controller
         $show_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->Paginate(12);
-        //  ->get();
-    
+        // ->Paginate(12);
+        ->get();
+         
         $show_category = DB::table('tbl_category_product')->get();
         $show_brand = DB::table('tbl_brand')->get();
         $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
@@ -160,6 +161,9 @@ class ProductController extends Controller
         ->with('show_category',$show_category)
         ->with('show_desc',$show_desc)
         ->with('show_brand',$show_brand);
+
+       
+
     }
     public function show_category_product($category_id){
         $show_category = DB::table('tbl_category_product')->get();
@@ -169,6 +173,8 @@ class ProductController extends Controller
         $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
         return view('product.show_category_product')
+
+        
         ->with('show_category',$show_category)
         ->with('show_brand',$show_brand)
         ->with('category_name',$category_name)
@@ -190,5 +196,333 @@ class ProductController extends Controller
         ->with('brand_name',$brand_name)
         ->with('show_brand_id',$show_brand_id);
     }
+    public function search(Request $request){
+        $show_category = DB::table('tbl_category_product')->get();
+        $show_brand = DB::table('tbl_brand')->get();
+
+        $keywords = $request->keywords_submit;
+      
+        $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
+        $search_product = DB::table('tbl_product')->where('product_name','like','%'.$keywords.'%')->get();
+        return view('product.search')
+     
+        ->with('show_desc',$show_desc)
+        ->with('show_category',$show_category)
+        ->with('search_product',$search_product)
+        ->with('show_brand',$show_brand);
+    }
+    public function price1(){
+        $show_category = DB::table('tbl_category_product')->get();
+        $show_brand = DB::table('tbl_brand')->get();
+        $show_by_price = DB::table('tbl_product')
+        ->where('product_price', '<',20000000)
+        ->get();
+        $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
+        return view('product.price1')
+        ->with('show_category',$show_category)
+        ->with('show_brand',$show_brand)
+        ->with('show_desc',$show_desc)
+        ->with('show_by_price',$show_by_price);
+    }
+
+    public function price_one(){
+        $show_category = DB::table('tbl_category_product')->get();
+        $show_brand = DB::table('tbl_brand')->get();
+        $show_by_price = DB::table('tbl_product')
+        ->where('product_price','<',20000000)
+        ->get();
+        $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
+        return view('product.price1')
+        ->with('show_category',$show_category)
+        ->with('show_brand',$show_brand)
+        ->with('show_desc',$show_desc)
+        ->with('show_by_price',$show_by_price);
+    }
+    public function price_two(){
+        $show_category = DB::table('tbl_category_product')->get();
+        $show_brand = DB::table('tbl_brand')->get();
+        $show_by_price = DB::table('tbl_product')
+        ->whereBetween('product_price',[20000000,40000000])
+        ->get();
+        $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
+        return view('product.price2')
+        ->with('show_category',$show_category)
+        ->with('show_brand',$show_brand)
+        ->with('show_desc',$show_desc)
+        ->with('show_by_price',$show_by_price);
+    }
+    public function price_three(){
+        $show_category = DB::table('tbl_category_product')->get();
+        $show_brand = DB::table('tbl_brand')->get();
+        $show_by_price = DB::table('tbl_product')
+        ->whereBetween('product_price',[40000000,50000000])
+        ->get();
+        $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
+        return view('product.price3')
+        ->with('show_category',$show_category)
+        ->with('show_brand',$show_brand)
+        ->with('show_desc',$show_desc)
+        ->with('show_by_price',$show_by_price);
+    }
+    public function price_four(){
+        $show_category = DB::table('tbl_category_product')->get();
+        $show_brand = DB::table('tbl_brand')->get();
+        $show_by_price = DB::table('tbl_product')
+        ->where('product_price', '>',50000000)
+        ->get();
+        $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
+        return view('product.price4')
+        ->with('show_category',$show_category)
+        ->with('show_brand',$show_brand)
+        ->with('show_desc',$show_desc)
+        ->with('show_by_price',$show_by_price);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //Quang Thành code
+ public function QTindex() {
+     $laptops = product::all();
+     return view('product.QT_index', ['laptops' => $laptops]);
+ }
 
 }

@@ -306,7 +306,8 @@ color: black
                   <div class="row">
                     <div class="col">
                       <label>Danh mục</label>
-                      <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->category_name }}</span> <br>           
+                      <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->category_name }}</span> 
+                      <br>           
                       <label>Thương hiệu</label>
                       <span style="color:rgb(26, 104, 194) ; font-weight: bold;">{{ $value->brand_name }}</span>
                     </div>
