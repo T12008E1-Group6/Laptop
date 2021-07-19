@@ -63,7 +63,8 @@
                 <td style="word-break: break-word; width: 100px ; height: 100px;" >
                    <img src="uploads/product/{{ $pro->product_image }}" height="100" width="100">
                    <a href="{{ URL::to('/show/'.$pro->product_id)}}">Xem thông số kỹ thuật </a> <br>
-                   <a href="{{ URL::to('/add-desc/'.$pro->product_id)}}">Thêm thông số kỹ thuật </a>
+                   <a href="{{ URL::to('/add-desc/'.$pro->product_id)}}" style="font-weight: bold">Thêm thông số kỹ thuật </a><br>
+                   <a href="{{ URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}" style="color:red ; font-weight: bold">Chi tiết sản phẩm</a>
                 </td>
               <td><a href="{{ ('/add-gallery/'.$pro->product_id) }}">Thêm thư viện ảnh</a></td>
               <td style="word-break: break-word; width: 230px"  >{{ $pro->product_name }}</td>
