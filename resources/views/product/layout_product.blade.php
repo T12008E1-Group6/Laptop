@@ -14,14 +14,15 @@
     <link rel="stylesheet" href="{{ asset('owl/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('owl/assets/owl.theme.default.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
       
-
     <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet">
  
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
   </head>
   <style>
    .right{
@@ -133,7 +134,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>
+                                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
+                                @if(Auth::user()->role > 0)
+                                <a href="/admin" class="dropdown-item">Admin</a>   
+                                @endif                         
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -163,7 +167,7 @@
            {{-- Thương hiệu nổi bật --}}
            <div>
                <h3> | Thương hiệu nổi bật</h3>
-           </div>
+           </div >
 
             <div class="row image" style="margin-right: 1px ; margin-bottom: 50px ; text-align: center">
                 @foreach ($show_brand as $key =>$brand)         
@@ -176,9 +180,39 @@
                 @endforeach
             </div>
            {{-- Thương hiệu nổi bật --}}
+        <div class="row" style="margin-bottom: 30px">
+            <div class="col-sm-4"></div>
+            
+         
+            <div class="col-sm-3">
+            </div>
+        
+            <div class="col-sm-5">
+            <form action="{{ URL::to('/tim-kiem') }}" method="POST" style="text-align: right">
+                {{ csrf_field() }}
+                    <span style="display: inline-block;">
+                        <input type="text" name="keywords_submit" class="form-control search" placeholder="Tìm kiếm sản phẩm" style="width: 300px">
+                    </span>
+                    <span><input type="submit" name="search_item" class="btn btn-danger btn-sm" value="Tìm kiếm" ></span>
+            </form>
+            </div>
+        </div>
 			<div class="row" style="margin-top: 5px">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
+                        <h2>Bộ lọc</h2>
+                        <div class="brands_products" style="margin-bottom: 10px">
+						
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="{{ URL::to('/price1') }}">Dưới 20.000.000 đ</a></li>
+                                    <li><a href="{{ URL::to('/price2') }}">20.000.000 đ - 30.000.000 đ</a></li>
+                                    <li><a href="{{ URL::to('/price3') }}">30.000.000 đ - 50.000.000 đ</a></li>
+                                    <li><a href="{{ URL::to('/price4') }}">Trên 50.000.000đ </a></li>
+                                   
+								</ul>
+							</div>
+						</div>
 						<h2>Danh mục sản phẩm</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							@foreach ($show_category as $key =>$category) 
@@ -210,7 +244,6 @@
                                 <img src="../images/posteracer.jpg" width="260px" height="280px">
 							</div>
 						</div>
-						
 					</div>
 				</div>
 				<div class="col-sm-9 padding-right">
@@ -219,10 +252,63 @@
 			</div>
 		</div>
 	</section>
-  
+
+    <footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210)">
+        <div class="bg-light">
+            <div class="container">
+                <div class="row py-4 d-flex align-items-center">
+                    <div class="col-md-12 text-center">
+                        <a href=""><i class="fab fa-facebook mr-4"></i></a>
+                        <a href=""><i class="fab fa-twitter mr-4"></i></a>
+                        <a href=""><i class="fab fa-google-plus-g mr-4"></i></a>
+                        <a href=""><i class="fab fa-instagram mr-4"></i></a>
+                        <a href=""><i class="fab fa-linkedin-in mr-4"></i></a>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center text-md-left mt-5">
+            <div class="row">
+                <div class="col-md-3 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold">Dvice</h6>
+                    <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                    <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+                </div>
+                <div class="col-md-3 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold">Discover more</h6>
+                    <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                <ul class="list-unstyled">
+                    <li class="my-2"><a href="">Apple</a></li>
+                    <li class="my-2"><a href="">Asus</a></li>
+                    <li class="my-2"><a href="">Lenovo</a></li>
+                    <li class="my-2"><a href="">Samsung</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                <ul class="list-unstyled">
+                    <li class="my-2"><a href="">Product</a></li>
+                    <li class="my-2"><a href="">About Us</a></li>
+                    <li class="my-2"><a href="">Blogs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
+                <ul class="list-unstyled">
+                    <li class="my-2"><i class="fas fa-home"></i> CMT8 str, District 3, HCM city</li>
+                    <li class="my-2"><i class="far fa-envelope"></i> Dvice@gmail.com</li>
+                    <li class="my-2"><i class="fas fa-phone"></i> +84 912345678</li>
+                </ul>
+            </div>
+            
+    </footer>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('owl/owl.carousel.min.js') }}"></script>
-    <script>
+   
+  <script>
         $('.owl-carousel').owlCarousel({
             items:1,
             NotIn:true,
@@ -372,5 +458,15 @@
             $('#sosanh').modal();
         }
     </script>
+     
+     @section('script')
+     <script>
+        $(function(){
+            $.('.order').change(function(){
+                $("#form_order").submit();
+            });
+        });
+        </script>
+     @stop
   </body>
 </html>

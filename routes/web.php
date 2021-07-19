@@ -270,9 +270,18 @@ Route::get('/danh-muc-san-pham/{category_id}', 'ProductController@show_category_
 //thương hiệu sản phẩm trang product
 Route::get('/thuong-hieu-san-pham/{brand_id}', 'ProductController@show_brand_product'); 
 
+//show product by price
+Route::get('/price1', 'ProductController@price_one'); 
+Route::get('/price2', 'ProductController@price_two'); 
+Route::get('/price3', 'ProductController@price_three'); 
+Route::get('/price4', 'ProductController@price_four'); 
+
 
 //show Product
-Route::get('product', 'ProductController@show_product');
+Route::get('/product', 'ProductController@show_product');
+
+//search product
+Route::post('/tim-kiem', 'ProductController@search');
 
 
 //Details Product
