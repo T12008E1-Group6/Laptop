@@ -97,7 +97,7 @@
             </div>
         </div>
     @endforeach
-    {{-- <p >{{$show_product->links() }}</p> --}}
+   
 </div><!--features_items-->		
 
 

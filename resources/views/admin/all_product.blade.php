@@ -6,31 +6,6 @@
       <div class="panel-heading">
      Liệt kê  sản phẩm
       </div>
-      {{-- <div class="row w3-res-tb">
-        <div class="col-sm-5 m-b-xs">
-          <select class="input-sm form-control w-sm inline v-middle">
-            <option value="0">Acer</option>
-            <option value="1">Hp</option>
-            <option value="2">Dell</option>
-            <option value="3">Asus</option>
-            <option value="3">MSI</option>
-            <option value="3">Samsung</option>
-            <option value="3">Apple</option>
-          </select>
-          <button class="btn btn-sm btn-default">Apply</button>                
-        </div>
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <input type="text" class="input-sm form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button class="btn btn-sm btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div> --}}
-
      
         <table class="table table-striped b-t b-light">  
           <?php
@@ -55,7 +30,17 @@
               <th style="width:30px;"></th>   
             </tr> 
           </thead>
-          <a href="{{ URL::to('/product/')}}">Trang sản phẩm</a>  
+          <label><a href="{{ URL::to('/all-product')}}">Trang sản phẩm</a></label>
+
+  
+          @foreach ($all_brand as $key=>$pro )
+            <div style="display: inline-block ; margin-right: 30px ; padding-left: 50px">
+            <a style="color: red ; font-weight: bold ;" href="{{ ('/thuong-hieu-san-pham-admin/'.$pro->brand_id) }}">{{ $pro->brand_name }}</a>
+           </div>
+          @endforeach
+     
+         
+          
           <tbody>
             @foreach ($all_product as $key =>$pro)                               
             <tr>
@@ -63,7 +48,8 @@
                 <td style="word-break: break-word; width: 100px ; height: 100px;" >
                    <img src="uploads/product/{{ $pro->product_image }}" height="100" width="100">
                    <a href="{{ URL::to('/show/'.$pro->product_id)}}">Xem thông số kỹ thuật </a> <br>
-                   <a href="{{ URL::to('/add-desc/'.$pro->product_id)}}">Thêm thông số kỹ thuật </a>
+                   <a href="{{ URL::to('/add-desc/'.$pro->product_id)}}" style="font-weight: bold">Thêm thông số kỹ thuật </a><br>
+                   <a href="{{ URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}" style="color:red ; font-weight: bold">Chi tiết sản phẩm</a>
                 </td>
               <td><a href="{{ ('/add-gallery/'.$pro->product_id) }}">Thêm thư viện ảnh</a></td>
               <td style="word-break: break-word; width: 230px"  >{{ $pro->product_name }}</td>
@@ -82,25 +68,6 @@
             @endforeach
           </tbody>
         </table>
-
-      
-      <footer class="panel-footer">
-        <div class="row">
-          
-          <div class="col-sm-5 text-center">
-          </div>
-          <div class="col-sm-7 text-right text-center-xs">                
-            <ul class="pagination pagination-sm m-t-none m-b-none">
-              <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-              <li><a href="">1</a></li>
-              <li><a href="">2</a></li>
-              <li><a href="">3</a></li>
-              <li><a href="">4</a></li>
-              <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
 @endsection

@@ -10,24 +10,24 @@
 <div class="" style="display:flex; ">
     <div class="col-md-12 py-4" style="font-size:1.2rem; text-indent: 1.5rem; padding: 5% 5% 0%">
         <p>
-            Welcome to Dvice, your number one source for all things tech. We're dedicated to giving you the very best of Laptops,
-             with a focus on customer satisfaction, professionalism, and community.
+            Chào mừng bạn đến với Dvice, nguồn số một của bạn về mọi thứ công nghệ. Chúng tôi cố gắng mang đến cho bạn những chiếc Máy tính xách tay tốt nhất,
+            tập trung vào sự hài lòng của khách hàng, tính chuyên nghiệp và cộng đồng.
         </p>
         <br>
         <p>
-            Founded in 2021 by Group 6, Dvice has come a long way from its beginnings in Ho Chi Minh. When we first started out, 
-            our passion for "devices for all" drove them to take this big leap of faith, so that Dvice can offer you an opportunity
-            to own a device that's catered to you, enabling our community to excel in their study, career and/or life. We now serve
-            customers all over Vietnam and are thrilled that we're able to turn our passion into our own website. 
+            Được thành lập vào năm 2021 bởi Group 6, Dvice đã đi một chặng đường dài từ những ngày đầu thành lập tại Hồ Chí Minh. Khi chúng tôi mới bắt đầu,
+            niềm đam mê của chúng tôi đối với "thiết bị cho tất cả" đã thúc đẩy họ thực hiện bước nhảy vọt về niềm tin này, để Dvice có thể mang đến cho bạn cơ hội
+            để sở hữu một thiết bị phục vụ cho bạn, cho phép cộng đồng của chúng tôi đạt được thành tích xuất sắc trong học tập, sự nghiệp và / hoặc cuộc sống của họ. Bây giờ chúng tôi phục vụ
+            khách hàng trên khắp Việt Nam và vui mừng vì chúng tôi có thể biến niềm đam mê của mình thành trang web của riêng mình.
         </p>
         <br>
         <p>
-            We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments,
-             please don't hesitate to contact us.
+            Chúng tôi hy vọng bạn thích sản phẩm của chúng tôi cũng như chúng tôi thích cung cấp chúng cho bạn. Nếu bạn có bất kỳ câu hỏi hoặc nhận xét nào,
+            xin vui lòng liên hệ với chúng tôi.
         </p>
         <br>
         <p>
-            Sincerely,
+            Trân trọng,
         <br>
             <i style="font-size:1.5rem">Dvice shop</i>
         </p>    

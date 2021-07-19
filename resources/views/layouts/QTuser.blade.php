@@ -22,6 +22,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
+    <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet">
+
     @yield('internalCSS')
 </head>
 <body>
@@ -39,16 +42,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto" style="font-weight:bold">
                         <li class='navbar-nav'>
-                            <a href="/product" class="nav-link active">Home</a>
+                            <a href="/product" class="nav-link active">Trang chủ</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/product" class="nav-link  ">Products</a>
+                            <a href="/product" class="nav-link  ">Sản phẩm</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/about" class="nav-link ">About us</a>
+                            <a href="/blog" class="nav-link  ">Bài viết</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/contact" class="nav-link ">Contact us</a>
+                            <a href="/about" class="nav-link ">Thông tin</a>
+                        </li>
+                        <li class='navbar-nav'>
+                            <a href="/contact" class="nav-link ">Hỗ trợ</a>
                         </li>
                     </ul>
 
@@ -57,7 +63,7 @@
                         <!-- Authentication Links -->
                         <li class="navbar-nav">
                             <a class="nav-link" style="font-weight:bold" href="{{ route('cart.shoppingCart') }}" tabindex="-1" aria-disabled="true">
-                                Shopping Cart 
+                        Giỏ hàng
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span class="badge rounded-circle" id="cartTotalQty" style="background-color: gold; position: relative; top: -10px; left: -10px">
                                     {{ Session::has('cart') ? Session::get('cart')->sum_qty() : '' }}
@@ -67,13 +73,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item" style="font-weight:bold">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item" style="font-weight:bold">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
                                 </li>
                             @endif
                         @else
@@ -83,9 +89,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
+                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Thông tin cá nhân</a>      
                                     @if(Auth::user()->role == 'admin')
-                                    <a href="/admin" class="dropdown-item">Admin</a>   
+                                    <a href="/admin" class="dropdown-item">Trang Admin</a>   
                                     @endif                         
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -115,7 +121,7 @@
 
 
 
-<footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210); margin-top:100px">
+<footer class="page-footer bg-light" style="border-top: solid 1px rgb(223, 210, 210)">
     <div class="bg-light">
         <div class="container">
             <div class="row py-4 d-flex align-items-center">
@@ -132,39 +138,30 @@
     </div>
     <div class="container text-center text-md-left mt-5">
         <div class="row">
-            <div class="col-md-3 mx-auto mb-4">
+            <div class="col-md-4 mx-auto mb-4">
                 <h6 class="text-uppercase font-weight-bold">Dvice</h6>
                 <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-                <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+                <p class="mt-2">© 2018. Công ty cổ phần DVICE. GPDKKD: 0303217354 do sở KH & ĐT TP.HCM cấp ngày 02/01/2007. GPMXH: 238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 04/06/2020.
+                    </p>
             </div>
-            <div class="col-md-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Discover more</h6>
-                <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-            <ul class="list-unstyled">
-                <li class="my-2"><a href="">Apple</a></li>
-                <li class="my-2"><a href="">Asus</a></li>
-                <li class="my-2"><a href="">Lenovo</a></li>
-                <li class="my-2"><a href="">Samsung</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3 mx-auto mb-4">
-            <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+            
+        <div class="col-md-4 mx-auto mb-4">
+            <h6 class="text-uppercase font-weight-bold">Hữu ích</h6>
             <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
             <ul class="list-unstyled">
-                <li class="my-2"><a href="">Product</a></li>
-                <li class="my-2"><a href="">About Us</a></li>
-                <li class="my-2"><a href="">Blogs</a></li>
+                <li class="my-2"><a href="{{ ('/product') }}">Sản phẩm</a></li>
+                <li class="my-2"><a href="">Thông tin</a></li>
+                <li class="my-2"><a href="">Bài viết</a></li>
             </ul>
         </div>
-        <div class="col-md-3 mx-auto mb-4">
-            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <div class="col-md-4 mx-auto mb-4">
+            <h6 class="text-uppercase font-weight-bold">Địa chỉ </h6>
             <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
             <ul class="list-unstyled">
-                <li class="my-2"><i class="fas fa-home"></i> CMT8 str, District 3, HCM city</li>
+                <li class="my-2"><i class="fas fa-home"></i> 590 Cách Mạng tháng 8, Quận 3, Thành phố Hồ Chí Minh</li>
                 <li class="my-2"><i class="far fa-envelope"></i> Dvice@gmail.com</li>
                 <li class="my-2"><i class="fas fa-phone"></i> +84 912345678</li>
             </ul>
         </div>
-        
 </footer>
 </html>

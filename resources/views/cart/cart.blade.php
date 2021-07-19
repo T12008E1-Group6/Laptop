@@ -1,7 +1,7 @@
 @extends('layouts.QTuser')
 
 @section('title')
-    Shopping Cart
+   Giỏ hàng
 @endsection
 
 @section('internalCSS')

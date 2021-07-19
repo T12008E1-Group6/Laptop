@@ -248,17 +248,20 @@ color: black
                                 </a>
     
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                  <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
+                                  @if(Auth::user()->role == 'admin')
+                                  <a href="{{ ('/admin') }}" class="dropdown-item">Admin</a>   
+                                  @endif                         
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                      {{ __('Logout') }}
+                                  </a>
+  
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                      @csrf
+                                  </form>
+                              </div>
                             </li>
                         @endguest
                     </ul>
@@ -289,7 +292,7 @@ color: black
                         <ul id="image" style="margin-top: 40px">
                           @foreach ($gallery as $key =>$gal)
                           <li data-thumb="{{ asset('uploads/gallery/'.$gal->gallery_image) }}" data-src="{{ asset('uploads/gallery/'.$gal->gallery_image) }}">
-                            <img alt="{{ $gal->gallery_name }}" width="100%" height="170px" src="{{ asset('uploads/gallery/'.$gal->gallery_image) }}" />
+                            <img alt="{{ $gal->gallery_name }}" width="95%" height="250px" src="{{ asset('uploads/gallery/'.$gal->gallery_image) }}" />
                           </li>
                           @endforeach
                         </ul> 
@@ -360,7 +363,7 @@ color: black
 
                     <div class="row" >
                       <div class="col-sm-2">
-                        <i class="fa fa-check-circle" aria-hidden="true" ></i>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
                       </div>
                       <div class="col-sm-10">
                         Cam kết hàng chính hãng 100%
@@ -369,7 +372,7 @@ color: black
 
                     <div class="row" >
                       <div class="col-sm-2">
-                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
                       </div>
                       <div class="col-sm-10">
                         Đổi trả trong vòng 10 ngày
@@ -406,7 +409,7 @@ color: black
   
                       <div class="row" >
                         <div class="col-sm-2">
-                          <i class="fa fa-shield" aria-hidden="true" ></i>
+                          <i class="fa fa-check-circle" aria-hidden="true"></i>
                         </div>
                         <div class="col-sm-10">
                           Bảo hành tại nhà
@@ -645,7 +648,8 @@ color: black
               <div class="col-md-3 mx-auto mb-4">
                   <h6 class="text-uppercase font-weight-bold">Dvice</h6>
                   <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-                  <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+                  <p class="mt-2"> @ 1997-2021 Công Ty Cổ Phần Thương Mại - Dịch Vụ Dvice
+                    Giấy chứng nhận đăng ký doanh nghiệp: 0304998358 do Sở KH-ĐT TP.HCM cấp lần đầu ngày 30 tháng 05 năm 2007</p>
               </div>
               <div class="col-md-3 mx-auto mb-4">
                   <h6 class="text-uppercase font-weight-bold">Discover more</h6>
