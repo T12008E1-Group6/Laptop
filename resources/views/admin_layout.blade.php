@@ -61,14 +61,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
-                @if(Auth::user()->role > 0)
-                <a href="/product" class="dropdown-item">Product</a>   
+                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Thông tin cá nhân</a>      
+                @if(Auth::user()->role == 'admin')
+                <a href="/product" class="dropdown-item">Trang sản phẩm</a>   
                 @endif                         
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('Đăng xuất') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -93,6 +93,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <i class="fa fa-dashboard"></i>
                         <span>Tổng quan</span>
                     </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="/userShow">
+                        <i class="fa fa-book"></i>
+                        <span>Danh sách người dùng</span>
+                    </a>
+                   
                 </li>
                 
                 <li class="sub-menu">

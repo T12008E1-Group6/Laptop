@@ -4,7 +4,9 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
       <div class="panel-heading">
-     Liệt kê  sản phẩm
+        @foreach ($brand_name as $key=> $brand) 
+        Sản phẩm thương hiệu {{ $brand->brand_name }}
+        @endforeach
       </div>
      
         <table class="table table-striped b-t b-light">  
