@@ -40,10 +40,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto" style="font-weight:bold">
                         <li class='navbar-nav'>
-                            <a href="/index" class="nav-link active">Home</a>
+                            <a href="/product" class="nav-link active">Home</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/products" class="nav-link  ">Products</a>
+                            <a href="/product" class="nav-link  ">Products</a>
                         </li>
                         <li class='navbar-nav'>
                             <a href="/about" class="nav-link ">About us</a>
@@ -51,7 +51,8 @@
                         <li class='navbar-nav'>
                             <a href="/contact" class="nav-link ">Contact us</a>
                         </li>
-                        <li class="navbar-nav form-group">
+                        {{-- Bị lỗi - phần của Linh --}}
+                        {{-- <li class="navbar-nav form-group">
                             <div >
                                 <form method="GET" action="{{route('search')}}" style="display:flex">				
                                 <input class="form-control" name="search" style="margin-left:10px; width:290px">
@@ -61,17 +62,19 @@
                                 </button>
                                 </form>     
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="navbar-nav">
-                            <a class="nav-link" href="{{ route('cart.shoppingCart') }}" tabindex="-1" aria-disabled="true">
+                            <a class="nav-link" style="font-weight:bold" href="{{ route('cart.shoppingCart') }}" tabindex="-1" aria-disabled="true">
                                 Shopping Cart 
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span class="badge rounded-circle" id="cartTotalQty" style="background-color: gold; position: relative; top: -10px; left: -10px">{{ Session::has('cart') ? Session::get('cart')->sum_qty() : '' }}</span>
+                                <span class="badge rounded-circle" id="cartTotalQty" style="background-color: gold; position: relative; top: -10px; left: -10px">
+                                    {{ Session::has('cart') ? Session::get('cart')->sum_qty() : '' }}
+                                </span>
                               </a>
                         </li>
                         @guest
@@ -94,7 +97,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
-                                    @if(Auth::user()->role > 0)
+                                    @if(Auth::user()->role == 'admin')
                                     <a href="/admin" class="dropdown-item">Admin</a>   
                                     @endif                         
                                     <a class="dropdown-item" href="{{ route('logout') }}"

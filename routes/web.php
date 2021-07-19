@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/product');
 
 Route::get('/index', function(){return view('/index');});
 
@@ -421,20 +419,39 @@ Route::get('/laptops-show', 'ProductController@QTindex')->name('laptops.show');
 
 Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addToCart');
 Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
-Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')->name('cart.removeFromCart');
+Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')
+    ->name('cart.removeFromCart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/checkout', 'CartController@getCheckout')->name('checkout');
     Route::post('/checkout', 'CartController@postCheckout')->name('checkout');
-    Route::get('/user-orders/{stage}', 'OrdersController@user_index')->name('user.orders');
+
+    Route::resource('/orders', 'OrdersController')->except([
+        'create', 'edit', 'index'
+    ]);
+    Route::get('/user-orders/{stage}', 'OrdersController@user_index')
+        ->name('user.orders');
+    
+    Route::post('/checkout-stripe', 'StripePaymentController@postStripePayment')
+        ->name('checkout.stripe');
+    
+    Route::resource('/comment-ratings', 'CommentRatingController')->except([
+        'create', 'edit', 'index'
+    ]);
 });
 
-Route::post('/checkout-stripe', 'StripePaymentController@postStripePayment')->name('checkout.stripe');
+Route::middleware('admin')->group(function () {
+    Route::get('/admin-orders/{stage}', 'OrdersController@admin_index')
+        ->name('admin.orders');
+    
+    Route::put('/admin-orders/update-orders-status', 'OrdersController@admin_update_status');
+    
+    Route::get('/admin-comment-ratings/{status}', 'CommentRatingController@admin_index')
+        ->name('admin.comment-ratings');
+    
+    Route::put('/admin-update-comment-rating-status', 'CommentRatingController@admin_update_status');
+});
 
-Route::resource('/orders', 'OrdersController')->except([
-    'create', 'edit', 'index'
-]);
 
 
-Route::get('/admin/orders', 'OrdersController@admin_management');
-Route::get('/admin/comment-rating', 'CommentRatingController@admin_management');
+

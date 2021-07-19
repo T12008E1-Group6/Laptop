@@ -21,7 +21,7 @@ class CreateCommentRatingsTable extends Migration
             $table->unsignedInteger('rating_points');
             $table->string('status');
             $table->timestamps();
-            $table->foreign('product_id')->references('product_id')->on('tbl_product'); //edit by Quang Thành
+            $table->foreign('product_id')->references('product_id')->on('tbl_product');
         });
     }
 

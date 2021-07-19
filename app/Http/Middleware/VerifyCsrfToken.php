@@ -13,6 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'http://localhost:8000/checkout-stripe',
-        'http://localhost:8000/orders'
+        'http://localhost:8000/orders',
+        'http://localhost:8000/comment-ratings',
+        'http://localhost:8000/admin-orders/update-orders-status',
+        'http://localhost:8000/admin-update-comment-rating-status'
     ];
 }

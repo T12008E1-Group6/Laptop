@@ -323,7 +323,7 @@ color: black
                   <div class="row">
                     <div class="style" style="margin-left: 12px ; margin-top: 20px">
                       <a href="">Mua ngay</a> 
-                      <a href="" style="background-color: blue;">Thêm vào giỏ hàng</a>
+                      <a href="{{ route('cart.addToCart', ['id' => $value->product_id]) }}" style="background-color: blue;">Thêm vào giỏ hàng</a>
                     </div>  
                   </div>
                 </aside>

@@ -21,4 +21,8 @@ class Order extends Model
     public function products() {
         return $this->belongsToMany('App\product', 'order_product', 'order_id', 'product_id');
     }
+
+    public function comment_ratings() {
+        return $this->hasMany(('App\comment_rating'));
+    }
 }

@@ -9,6 +9,7 @@
         .hidden {
             display: none;
         }
+
     </style>
 @endsection
 
@@ -20,56 +21,52 @@
                 @foreach ($cart->cartItems as $itemId => $groupItem)
                     <div class="row mb-2" id="{{ $itemId }}__groupItem">
                         <div class="col-2">
-                            <img src="{{ asset("uploads/product/" . $groupItem['item']['product_image']) }}" 
-                                    class="groupItem__item__product_image"
-                                    id="{{ $itemId }}__groupItem__item__product_image"
-                                    alt="ProductImage" 
-                                    style="max-height: 100px; max-width: 100px">
+                            <img src="{{ asset('uploads/product/' . $groupItem['item']['product_image']) }}"
+                                class="groupItem__item__product_image"
+                                id="{{ $itemId }}__groupItem__item__product_image" alt="ProductImage"
+                                style="max-height: 100px; max-width: 100px">
                         </div>
                         <div class="col-5 groupItem__item__product_name"
-                                id="{{ $itemId }}__groupItem__item__product_name">
+                            id="{{ $itemId }}__groupItem__item__product_name">
                             {{ $groupItem['item']['product_name'] }}
                         </div>
                         <div class="col">
                             <div class="btn-group" role="group">
-                                <button id="{{ $itemId }}__btnAdjustQty--minus" type="button" class="btn btn-outline-primary btnAdjustQty btnAdjustQty--minus">-</button>
-                                <input  type="number" 
-                                        class="border border-primary groupItem__qty" 
-                                        id="{{ $itemId }}__groupItem__qty"
-                                        value="{{ $groupItem['qty'] }}" 
-                                        style="width: 33px; text-align: center;" 
-                                        readonly/>
-                                <button id="{{ $itemId }}__btnAdjustQty--plus" type="button" class="btn btn-outline-primary btnAdjustQty btnAdjustQty--plus">+</button>
+                                <button id="{{ $itemId }}__btnAdjustQty--minus" type="button"
+                                    class="btn btn-outline-primary btnAdjustQty btnAdjustQty--minus">-</button>
+                                <input type="number" class="border border-primary groupItem__qty"
+                                    id="{{ $itemId }}__groupItem__qty" value="{{ $groupItem['qty'] }}"
+                                    style="width: 33px; text-align: center;" readonly />
+                                <button id="{{ $itemId }}__btnAdjustQty--plus" type="button"
+                                    class="btn btn-outline-primary btnAdjustQty btnAdjustQty--plus">+</button>
                             </div>
                         </div>
                         <div class="col-2 d-flex flex-column align-items-end">
                             <div>
-                                    <span class="groupItemSubtotal" 
-                                            id="{{ $itemId }}__groupItemSubtotal">
-                                        {{ number_format($cart->sum_itemPrice($itemId), 0, ",", ".") }} <u>đ</u>
-                                    </span>
+                                <span class="groupItemSubtotal" id="{{ $itemId }}__groupItemSubtotal">
+                                    {{ number_format($cart->sum_itemPrice($itemId), 0, ',', '.') }} <u>đ</u>
+                                </span>
                             </div>
                             <div style="font-size: 0.7rem">
-                                    <span class="groupItem__item__product_price" 
-                                            id="{{ $itemId }}__groupItem__item__product_price">
-                                        {{ number_format($groupItem['item']['product_price'], 0, ",", ".") }}  đ/Unit
-                                    </span>
+                                <span class="groupItem__item__product_price"
+                                    id="{{ $itemId }}__groupItem__item__product_price">
+                                    {{ number_format($groupItem['item']['product_price'], 0, ',', '.') }} đ/Unit
+                                </span>
                             </div>
                         </div>
                         <div class="col">
-                            <button class="groupItem--remove"
-                                    id="{{ $itemId }}__groupItem--remove"
-                                    style="font-size: 1.5rem"
-                            ><i class="fas fa-trash-alt"></i></button>
+                            <button class="groupItem--remove" id="{{ $itemId }}__groupItem--remove"
+                                style="font-size: 1.5rem"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
-                    
+
                 @endforeach
                 <hr>
                 <div class="row d-flex justify-content-end">
                     <div class="col-3">
-                        Total: 
-                        <strong id="cartTotalPrice">{{ number_format($cart->sum_amount(), 0, ",", ".") }} <u>đ</u></strong>
+                        Total:
+                        <strong id="cartTotalPrice">{{ number_format($cart->sum_amount(), 0, ',', '.') }}
+                            <u>đ</u></strong>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-end">
@@ -80,15 +77,15 @@
                 </div>
             @else
                 <div class="row">
-                        <h2>No Items in Cart</h2>
+                    <h2>No Items in Cart</h2>
                 </div>
             @endif
         </div>
     </div>
-   
+
     <script type="module">
         import Cart from '{{ asset('js/QT/Cart.js') }}';
-        var cart = new Cart(<?php echo json_encode($cart) ?>);
+        var cart = new Cart(<?php echo json_encode($cart); ?>);
         // console.log(cart);
 
         document.querySelectorAll('.btnAdjustQty').forEach((btnAdjustQty) => {
@@ -102,7 +99,7 @@
                         cart.minus_itemQty(itemId);
                     }
                 } else {
-                    cart.plus_itemQty(itemId).render_itemSubtotal(itemId);                   
+                    cart.plus_itemQty(itemId).render_itemSubtotal(itemId);
                 }
                 cart.render_cartTotalQty().render_cartTotalPrice();
             });
@@ -113,14 +110,12 @@
             var itemId = targetId.slice(0, targetId.indexOf('__'));
             btnRemove.addEventListener('click', () => {
                 cart.remove(itemId).render_cartTotalQty().render_cartTotalPrice();
-                
+
             })
         })
 
         window.onbeforeunload = function() {
             cart.save();
         }
-
-
     </script>
 @endsection

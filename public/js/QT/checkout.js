@@ -58,7 +58,7 @@ fetch("http://localhost:8000/checkout-stripe", {
   body: JSON.stringify(purchase)
 })
   .then(result => result.json())
-  .then(function(data) {
+  .then(function (data) {
     // console.log(data);
     var elements = stripe.elements();
 
@@ -90,7 +90,7 @@ fetch("http://localhost:8000/checkout-stripe", {
     });
 
     var form = document.getElementById("payment-form");
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", function (event) {
       event.preventDefault();
       // Complete payment when the submit button is clicked
       payWithCard(stripe, card, data.clientSecret);
@@ -100,7 +100,7 @@ fetch("http://localhost:8000/checkout-stripe", {
 // Calls stripe.confirmCardPayment
 // If the card requires authentication Stripe shows a pop-up modal to
 // prompt the user to enter authentication details without leaving your page.
-var payWithCard = function(stripe, card, clientSecret) {
+var payWithCard = function (stripe, card, clientSecret) {
   loading(true);
   stripe
     .confirmCardPayment(clientSecret, {
@@ -108,7 +108,7 @@ var payWithCard = function(stripe, card, clientSecret) {
         card: card
       }
     })
-    .then(function(result) {
+    .then(function (result) {
       if (result.error) {
         // Show error to your customer
         showError(result.error.message);
@@ -122,13 +122,13 @@ var payWithCard = function(stripe, card, clientSecret) {
 /* ------- UI helpers ------- */
 
 // Shows a success message when the payment is complete
-var orderComplete = function(paymentIntentId) {
+var orderComplete = function (paymentIntentId) {
   loading(false);
   document
     .querySelector(".result-message a")
     .setAttribute(
       "href",
-      "http://localhost:8000/user-orders"
+      "http://localhost:8000/user-orders/all"
     );
   document.querySelector(".result-message").classList.remove("hidden");
   document.querySelector("#payment-form button").disabled = true;
@@ -164,19 +164,19 @@ function StoreOrder(order) {
 
 
 // Show the customer the error from Stripe if their card fails to charge
-var showError = function(errorMsgText) {
+var showError = function (errorMsgText) {
   loading(false);
   var errorMsg = document.querySelector("#card-error");
   errorMsg.textContent = errorMsgText;
   errorMsg.classList.remove('hidden');
-  setTimeout(function() {
+  setTimeout(function () {
     errorMsg.textContent = "";
     errorMsg.classList.add('hidden');
   }, 4000);
 };
 
 // Show a spinner on payment submission
-var loading = function(isLoading) {
+var loading = function (isLoading) {
   if (isLoading) {
     // Disable the button and show a spinner
     document.querySelector("#payment-form button").disabled = true;
@@ -198,7 +198,7 @@ document.querySelectorAll('.paymentMethodChoice').forEach(choice => {
       choice.classList.replace('btn-outline-success', 'btn-success');
       document.getElementById('radio__paymentMethod__cash').checked = true
       document.getElementById('label__paymentMethod__card').classList.replace('btn-success', 'btn-outline-success');
-      
+
     } else {
       document.getElementById('cardPayment__wraper').classList.remove('hidden');
       document.getElementById('placeOrder').classList.add('hidden');
@@ -224,7 +224,7 @@ document.getElementById('placeOrder').addEventListener('click', () => {
     .querySelector(".orderComplete-message a")
     .setAttribute(
       "href",
-      "http://localhost:8000/user-orders"
+      "http://localhost:8000/user-orders/all"
     );
   document.querySelector(".orderComplete-message").classList.remove("hidden");
   document.querySelector("#placeOrder").disabled = true;

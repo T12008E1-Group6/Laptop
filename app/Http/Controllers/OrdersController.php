@@ -17,17 +17,17 @@ class OrdersController extends Controller
     {
         switch ($stage) {
             case 'waiting-delivery':
-                $userOrders = Auth::user()->orders()->where('status', 'wait--delivery')->paginate(5);
+                $userOrders = Auth::user()->orders()->where('status', 'wait--delivery')->orderBy('created_at', 'desc')->paginate(5);
                 break;
             case 'complete':
-                $userOrders = Auth::user()->orders()->where('status', 'Complete')->paginate(5);
-                break;  
+                $userOrders = Auth::user()->orders()->where('status', 'Complete')->orderBy('created_at', 'desc')->paginate(5);
+                break;
             default:
-                $userOrders = Auth::user()->orders()->paginate(5);
+                $userOrders = Auth::user()->orders()->orderBy('created_at', 'desc')->paginate(5);
                 break;
         }
-        
-        $userOrders->transform(function($order, $key) {
+
+        $userOrders->transform(function ($order, $key) {
             $order->cart_info = json_decode($order->cart_info, TRUE);
             $order->delivery_info = json_decode($order->delivery_info, TRUE);
             $order->payment_info = json_decode($order->payment_info, TRUE);
@@ -42,8 +42,31 @@ class OrdersController extends Controller
     }
 
 
-    public function admin_index() {
-        return view('order.admin_order_management');
+    public function admin_index($stage)
+    {
+        switch ($stage) {
+            case 'waiting-delivery':
+                $orders = Order::where('status', 'wait--delivery')->orderBy('created_at', 'desc')->paginate(5);
+                break;
+            case 'complete':
+                $orders = Order::where('status', 'complete')->orderBy('created_at', 'desc')->paginate(5);
+                break;
+            default:
+                $orders = Order::orderBy('created_at', 'desc')->paginate(5);
+                break;
+        }
+
+        $orders->transform(function ($order, $key) {
+            $order->cart_info = json_decode($order->cart_info, TRUE);
+            $order->delivery_info = json_decode($order->delivery_info, TRUE);
+            $order->payment_info = json_decode($order->payment_info, TRUE);
+            return $order;
+        });
+        return view('order.admin_orders', [
+            'orders' => $orders,
+            'orderStage' => $stage
+        ]);
+
     }
 
     /**
@@ -60,7 +83,7 @@ class OrdersController extends Controller
         foreach ($cartInfo['items'] as $item) {
             array_push($relatedProductIds, $item['id']);
         }
-        
+
         $newOrder = Auth::user()->orders()->create([
             'cart_info' => $order['cart_info'],
             'delivery_info' => $order['delivery_info'],
@@ -73,7 +96,7 @@ class OrdersController extends Controller
 
         //Kill old cart in session
         $request->session()->forget('cart');
-        
+
         http_response_code(200);
         return 'Order successful';
     }
@@ -86,7 +109,12 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        return view('order.details');
+        $order = Auth::user()->orders()->find($id);
+        $order->cart_info = json_decode($order->cart_info, TRUE);
+        $order->delivery_info = json_decode($order->delivery_info, TRUE);
+        $order->payment_info = json_decode($order->payment_info, TRUE);
+        // DD($order);
+        return view('order.details', ['order' => $order]);
     }
 
 
@@ -102,6 +130,18 @@ class OrdersController extends Controller
         //
     }
 
+    public function admin_update_status(Request $request) {
+        $ordersStatus = $request->all();
+        foreach ($ordersStatus as $os) {
+            Order::where('id', $os['orderId'])
+                    ->update([
+                        'status' => $os['orderStatus']
+                    ]);
+        }
+        http_response_code(200);
+        return 'successful';
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -112,6 +152,4 @@ class OrdersController extends Controller
     {
         //
     }
-
-
 }
