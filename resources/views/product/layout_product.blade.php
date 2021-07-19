@@ -111,9 +111,11 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     <li class="navbar-nav">
-                        <a href="/shopping_cart" class="nav-link" style="font-weight:bold ;">
-                            <i style="color: black" class="fa fa-shopping-cart" aria-hidden="true"></i> giỏ hàng
-                        </a>
+                        <a class="nav-link" href="{{ route('cart.shoppingCart') }}" tabindex="-1" aria-disabled="true" style="font-weight: bold">
+                           Giỏ hàng
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge rounded-circle" style="background-color: gold; position: relative; top: -10px; left: -20px">{{ Session::has('cart') ? Session::get('cart')->sum_qty() : '' }}</span>
+                          </a>
                     </li>
                     @guest
                         @if (Route::has('login'))
@@ -134,14 +136,16 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">thông tin cá nhân</a>      
-                                @if(Auth::user()->role > 0)
-                                <a href="/admin" class="dropdown-item">Admin</a>   
-                                @endif                         
+                                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Thông tin cá nhân</a>    
+
+                                @if(Auth::user()->role == 'admin')
+                                <a href="{{ ('/admin') }}" class="dropdown-item">Trang Admin</a>   
+                                @endif              
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Đăng xuất') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

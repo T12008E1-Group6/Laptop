@@ -1,35 +1,48 @@
 <?php
+namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
+use Error;
+use App\product;
 
-require 'vendor/autoload.php';
 
-\Stripe\Stripe::setApiKey('sk_test_51J5VfyLC7Uq3V5YFCOAvqyQR3zmg4YAlDf8beJRp7tY8zSTKIpvc4jJfVQSsqutnqLMM71pi11hbfhdIS1IpBdMy00vlt2pYF1');
+class StripePaymentController extends Controller
+{
+  public function postStripePayment(Request $request) {
+    
+    Stripe::setApiKey('sk_test_51J5VfyLC7Uq3V5YFCOAvqyQR3zmg4YAlDf8beJRp7tY8zSTKIpvc4jJfVQSsqutnqLMM71pi11hbfhdIS1IpBdMy00vlt2pYF1');
+    
+    function calculateOrderAmount(array $items): int {
+      $orderAmount = 0;
+      
+      foreach ($items as $item) {
+        $laptop = product::find($item['id']);
+        $orderAmount += ($laptop->product_price * $item['qty']); // Re-calculate order amount from server product_price
+      }
+      return $orderAmount;
+    }
+    
+    try {
+      $json_obj = $request->all();
+    
+      $paymentIntent = PaymentIntent::create([
+        'amount' => calculateOrderAmount($json_obj['items']),
+        'currency' => 'vnd',
+      ]);
+    
+      $output = [
+        'clientSecret' => $paymentIntent->client_secret,
+        // 'clientSecret' => calculateOrderAmount($json_obj['items'])
+      ];
+    
+      http_response_code(200);
+      return json_encode($output);
+    } catch (Error $e) {
+      http_response_code(500);
+      return json_encode(['error' => $e->getMessage()]);
+    }
 
-
-function calculateOrderAmount(array $items): int {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // customers from directly manipulating the amount on the client
-  return 1400;
-}
-
-header('Content-Type: application/json');
-
-try {
-  // retrieve JSON from POST body
-  $json_str = file_get_contents('php://input');
-  $json_obj = json_decode($json_str);
-
-  $paymentIntent = \Stripe\PaymentIntent::create([
-    'amount' => calculateOrderAmount($json_obj->items),
-    'currency' => 'usd',
-  ]);
-
-  $output = [
-    'clientSecret' => $paymentIntent->client_secret,
-  ];
-
-  echo json_encode($output);
-} catch (Error $e) {
-  http_response_code(500);
-  echo json_encode(['error' => $e->getMessage()]);
+  }
 }

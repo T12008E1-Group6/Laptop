@@ -15,7 +15,7 @@ class ProductTableSeeder extends Seeder
     {
         product::create([
             'category_id' => 1,
-            'brand_id' => 8,
+            'brand_id' => 7,
             'product_name' => 'Laptop Apple MacBook Pro M1 2020 16GB/1TB SSD/Space Grey (Z11C000CJ)',
             'product_desc' => '',
             'product_content' => '',
@@ -25,7 +25,7 @@ class ProductTableSeeder extends Seeder
         ]);
         product::create([
             'category_id' => 1,
-            'brand_id' => 8,
+            'brand_id' => 7,
             'product_name' => 'Laptop Apple MacBook Air M1 2020 8GB/512GB/Space Grey (MGN73SA/A)',
             'product_desc' => '',
             'product_content' => '',

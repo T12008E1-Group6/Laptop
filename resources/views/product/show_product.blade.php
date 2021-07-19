@@ -38,7 +38,7 @@
                                                         </div>
                                                         <div class="choose" style="padding: 0">
                                                             <ul class="nav nav-pills nav-justified">
-                                                                <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Thêm vào giỏ</a></li>
+                                                                <li><a href="{{ route('cart.addToCart', ['id' => $show->product_id]) }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Thêm vào giỏ</a></li>
                                                                 <li style="padding-right: 15px">
                                                                     <a style="cursor: pointer;" data-toggle="modal" data-target="#sosanh" onclick="add_compare({{ $show->product_id }})">
                                                                         <i class="fa fa-plus-square"></i>So sánh

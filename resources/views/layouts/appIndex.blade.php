@@ -22,6 +22,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
+<link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet">
  
 </head>
 <body>
@@ -84,14 +86,14 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">thông tin cá nhân</a>      
-                                @if(Auth::user()->role > 0)
-                                <a href="/admin" class="dropdown-item">Admin</a>   
+                                <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Thông tin cá nhân</a>      
+                                @if(Auth::user()->role == 'admin')
+                                <a href="/admin" class="dropdown-item">Trang Admin</a>   
                                 @endif                         
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Đăng xuất') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

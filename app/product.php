@@ -11,6 +11,8 @@ class product extends Model
     'product_price','product_image','product_image','product_name'];
     protected $primaryKey = 'product_id';
 
+    public function orders() {
+        return $this->belongsToMany('App\Orders', 'order_product', 'product_id', 'order_id');}
     public function category(){
         return $this->belongsTo('App\CategoryProductModel','category_id');
     }
