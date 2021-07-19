@@ -11,8 +11,8 @@
     <link href="{{ asset('css/prettify.css') }}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('icon_font/font-awesome/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('owl/assets/owl.carousel.min.css') }}">
-    {{-- <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/sanpham.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sanpham2.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('owl/assets/owl.theme.default.css') }}">
 
 
@@ -192,7 +192,7 @@ color: black
 }
     </style>
   <body>
-          {{-- <nav class="navbar navbar-expand-md shadow-sm">
+          <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a href="{{ url('/index') }}" style="padding-right:3%">
                     <img src="{{asset('images/logo.svg')}}" alt="" style="height:40px">
@@ -248,23 +248,26 @@ color: black
                                 </a>
     
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                  <a href="/userInfo/{{ Auth::user()->id}}" class="dropdown-item">Profile</a>      
+                                  @if(Auth::user()->role > 0)
+                                  <a href="/admin" class="dropdown-item">Admin</a>   
+                                  @endif                         
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                      {{ __('Logout') }}
+                                  </a>
+  
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                      @csrf
+                                  </form>
+                              </div>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
-        </nav> --}}
+        </nav>
     <div style="background-color: rgb(241 240 241)">
       <div class="container" >
           <div class="row" style="margin-bottom: 15px ; padding-top: 15px ;">
@@ -645,7 +648,8 @@ color: black
               <div class="col-md-3 mx-auto mb-4">
                   <h6 class="text-uppercase font-weight-bold">Dvice</h6>
                   <hr class="bg-primary mb-4 mt-0 d-inline-block mx-auto" style="width:125px;height:2px">
-                  <p class="mt-2">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem IpsumLorem Ipsum Lorem Ipsum Lorem Ipsum vv</p>
+                  <p class="mt-2"> @ 1997-2021 Công Ty Cổ Phần Thương Mại - Dịch Vụ Dvice
+                    Giấy chứng nhận đăng ký doanh nghiệp: 0304998358 do Sở KH-ĐT TP.HCM cấp lần đầu ngày 30 tháng 05 năm 2007</p>
               </div>
               <div class="col-md-3 mx-auto mb-4">
                   <h6 class="text-uppercase font-weight-bold">Discover more</h6>

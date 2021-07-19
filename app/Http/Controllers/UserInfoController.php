@@ -19,7 +19,10 @@ class UserInfoController extends Controller
 
     public function userInfo($user){
         $user = User::find($user);
-        
+       if($user->active==0){
+            Auth::logout();
+            return redirect()->route('login')->with('message','Your account has been banned, please contact admin.');
+        }
         return view('userInfo',[
             'user' => $user
         ]);

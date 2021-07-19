@@ -100,8 +100,5 @@
    
 </div><!--features_items-->		
 
-<div>
-  <button @click="addToCompare" class="button expanded add-to-compare"></button>
-</div>
 
 @endsection

@@ -269,6 +269,8 @@ Route::get('/danh-muc-san-pham/{category_id}', 'ProductController@show_category_
 
 //thương hiệu sản phẩm trang product
 Route::get('/thuong-hieu-san-pham/{brand_id}', 'ProductController@show_brand_product'); 
+//product admin -brand
+Route::get('/thuong-hieu-san-pham-admin/{brand_id}', 'ProductController@admin_brand_product'); 
 
 //show product by price
 Route::get('/price1', 'ProductController@price_one'); 

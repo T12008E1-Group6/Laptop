@@ -27,7 +27,11 @@ class ProductController extends Controller
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->orderby('tbl_product.product_id')
         ->get();
-        return view('admin.all_product')->with('all_product',$all_product);
+        $all_brand = DB::table('tbl_brand')->get();
+        return view('admin.all_product')
+        ->with('all_brand',$all_brand)
+        ->with('all_product',$all_product);
+
     }
 
     public function save_product(ProductRequest $request){
@@ -152,7 +156,6 @@ class ProductController extends Controller
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         // ->Paginate(12);
         ->get();
-         
         $show_category = DB::table('tbl_category_product')->get();
         $show_brand = DB::table('tbl_brand')->get();
         $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
@@ -168,7 +171,8 @@ class ProductController extends Controller
     public function show_category_product($category_id){
         $show_category = DB::table('tbl_category_product')->get();
         $show_brand = DB::table('tbl_brand')->get();
-        $show_category_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
+        $show_category_id = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
         ->where('tbl_product.category_id',$category_id)->Paginate(12);
         $show_desc = DB::table('tbl_description') ->join('tbl_product','tbl_product.product_id','=','tbl_description.product_id')->get();
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
@@ -196,6 +200,23 @@ class ProductController extends Controller
         ->with('brand_name',$brand_name)
         ->with('show_brand_id',$show_brand_id);
     }
+
+    public function admin_brand_product($brand_id){
+        $show_brand_admin = DB::table('tbl_product')
+        ->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')
+        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->where('tbl_product.brand_id',$brand_id)->get();
+        $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id',$brand_id)->limit(1)->get();
+        $all_brand = DB::table('tbl_brand')->get();
+        return view('admin.admin_brand_product')
+        ->with('all_brand',$all_brand)
+        ->with('brand_name',$brand_name)
+        ->with('show_brand_admin',$show_brand_admin);
+    }
+
+    
+
+
     public function search(Request $request){
         $show_category = DB::table('tbl_category_product')->get();
         $show_brand = DB::table('tbl_brand')->get();

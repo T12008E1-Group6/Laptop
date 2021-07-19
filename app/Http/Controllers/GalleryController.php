@@ -101,7 +101,6 @@ class GalleryController extends Controller
                   </td>
                  
                  <td><button type="button" data-gal_id="'.$gal->gallery_id.'" class="btn btn-xs btn-danger delete-gallery">Xoá</button></td>
-                             
                               </tr>
                               </form>
                 ';
