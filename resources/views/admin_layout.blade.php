@@ -135,6 +135,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{ URL::to('/all-desc') }}">Liệt kê thông số kỹ thuật sản phẩm</a></li>
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="/admin-orders/all">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý đơn hàng</span>
+                    </a>
+                   
+                </li>
+
+                <li class="sub-menu">
+                    <a href="/admin-comment-ratings/all">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý đánh giá & bình luận</span>
+                    </a>
+                   
+                </li>
                
             </ul>            </div>
        
