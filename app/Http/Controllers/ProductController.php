@@ -208,6 +208,7 @@ class ProductController extends Controller
         ->where('tbl_product.brand_id',$brand_id)->get();
         $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id',$brand_id)->limit(1)->get();
         $all_brand = DB::table('tbl_brand')->get();
+        
         return view('admin.admin_brand_product')
         ->with('all_brand',$all_brand)
         ->with('brand_name',$brand_name)
