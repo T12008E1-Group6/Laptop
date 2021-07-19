@@ -205,10 +205,10 @@ color: black
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto" style="font-weight:bold">
                         <li class='navbar-nav'>
-                            <a href="/index" class="nav-link active">Trang chủ</a>
+                            <a href="/product" class="nav-link active">Trang chủ</a>
                         </li>
                         <li class='navbar-nav'>
-                            <a href="/products" class="nav-link  ">Sản phẩm</a>
+                            <a href="/product" class="nav-link  ">Sản phẩm</a>
                         </li>
                         <li class='navbar-nav'>
                             <a href="/blog" class="nav-link ">Bài viết</a>
