@@ -15,7 +15,12 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             CategoryTableSeeder::class,
             BrandTableSeeder::class,
-            ProductTableSeeder::class
+            ProductTableSeeder::class,
+            DescriptionTableSeeder::class,
+            GalleryTableSeeder::class,
+            OrdersTableSeeder::class,
+            OrderProductTableSeeder::class,
+            CommentRatingSeeder::class
         ]);
     }
 }

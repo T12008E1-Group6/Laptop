@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class CommentRatingSeeder extends Seeder
+class OrdersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +11,6 @@ class CommentRatingSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement(
-           
-        );
+        //
     }
 }

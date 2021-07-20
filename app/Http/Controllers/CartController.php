@@ -22,10 +22,13 @@ class CartController extends Controller
     }
 
     public function getCart() {
-        if($this->cart == null) {
-            $this->cart = new Cart();
-            Session::put('cart', $this->cart);
+        $this->cart = new Cart();
+        if (isset($_COOKIE['modifiedCart'])) {
+            $modifiedCart = (object) json_decode($_COOKIE['modifiedCart'], TRUE);
+            $this->cart->cartItems = $modifiedCart->cartItems;
+            setcookie('modifiedCart',"", time() - 3600); //delete this cookie
         }
+        Session::put('cart', $this->cart);
         // DD($this->cart);
         return view('cart.cart', ['cart' => $this->cart]);
     }

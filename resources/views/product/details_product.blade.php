@@ -225,10 +225,14 @@ color: black
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="navbar-nav">
-                            <a href="/shopping_cart" class="nav-link" style="font-weight:bold ;">
-                                <i style="color: black" class="fa fa-shopping-cart" aria-hidden="true"></i> Giỏ hàng
+                          <a class="nav-link" style="font-weight:bold" href="{{ route('cart.shoppingCart') }}" tabindex="-1" aria-disabled="true">
+                      Giỏ hàng
+                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                              <span class="badge rounded-circle" id="cartTotalQty" style="background-color: gold; position: relative; top: -10px; left: -10px">
+                                  {{ Session::has('cart') ? Session::get('cart')->sum_qty() : '' }}
+                              </span>
                             </a>
-                        </li>
+                      </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item" style="font-weight:bold">

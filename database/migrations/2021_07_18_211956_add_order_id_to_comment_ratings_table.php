@@ -26,7 +26,7 @@ class AddOrderIdToCommentRatingsTable extends Migration
     public function down()
     {
         Schema::table('comment_ratings', function (Blueprint $table) {
-            $table->dropColumn('order_id');
+
         });
     }
 }
