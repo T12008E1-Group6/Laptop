@@ -109,7 +109,11 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $order = Auth::user()->orders()->find($id);
+        if (Auth::user()->role == 'admin') {
+            $order = Order::find($id);
+        } else {
+            $order = Auth::user()->orders()->find($id);
+        }
         $order->cart_info = json_decode($order->cart_info, TRUE);
         $order->delivery_info = json_decode($order->delivery_info, TRUE);
         $order->payment_info = json_decode($order->payment_info, TRUE);
