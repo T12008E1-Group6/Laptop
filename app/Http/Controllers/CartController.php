@@ -25,7 +25,9 @@ class CartController extends Controller
 
     public function getCart() {
         $this->cart = new Cart();
-        $this->cart = Session::get('cart');
+        if (Session::has('cart')) {
+            $this->cart = Session::get('cart');
+        }
         return view('cart.cart', ['cart' => $this->cart]);
     }
     
