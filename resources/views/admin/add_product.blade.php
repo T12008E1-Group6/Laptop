@@ -43,7 +43,8 @@
                         </div>
                         <div class="form-group">
                             <label for="">Mô tả sản phẩm</label>
-                            <textarea style="resize: none" rows="5" name="product_desc" class="form-control" id="ckeditor" >{{ old('product_desc') }}</textarea>
+                            {{-- id="ckeditor" --}}
+                            <textarea style="resize: none" rows="5" name="product_desc" class="form-control"  >{{ old('product_desc') }}</textarea>
                             @if($errors->has('product_desc'))
                             <div class="error-text">
                                 {{$errors->first('product_desc')}}
@@ -53,7 +54,8 @@
 
                         <div class="form-group">
                             <label for="">Nội dung sản phẩm</label>
-                            <textarea style="resize: none" rows="5" name="product_content" class="form-control" id="ckeditor1" >{{ old('product_content') }}</textarea>
+                            <textarea style="resize: none" rows="5" name="product_content" class="form-control"  >{{ old('product_content') }}</textarea>
+                            {{-- id="ckeditor1" --}}
                             @if($errors->has('product_content'))
                             <div class="error-text">
                                 {{$errors->first('product_content')}}
@@ -99,15 +101,6 @@
                         </select>
                            </div>
                         
-                        
-                       
-                        {{-- <div class="form-group">
-                            <label for="" >Hiển thị</label>
-                                <select name="product_status" class="form-control input-sm m-bot15">
-                                    <option value="0"> Ẩn </option>
-                                    <option value="1"> Hiển thị </option>
-                                </select>
-                         </div> --}}
 
                         <button type="submit" name="add_product" class="btn btn-info">Thêm sản phẩm</button>
                         
