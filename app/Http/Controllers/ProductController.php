@@ -35,7 +35,11 @@ class ProductController extends Controller
     }
 
     public function save_product(ProductRequest $request){
+       
+       DD($request);
+       
         $data = array();
+       
         $data['product_name'] = $request->product_name;
         $data['product_desc'] = $request->product_desc;
      

@@ -15,7 +15,7 @@ class Cart
             $this->cartItems = $oldCart->cartItems;
         }
     }
-    public function add(Product $pickingItem) { //param as assoc array
+    public function add(product $pickingItem) { //param as assoc array
         $itemId = $pickingItem->product_id;
         $groupItem = [
             'qty' => 1,

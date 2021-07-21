@@ -194,7 +194,7 @@ color: black
   <body>
           <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
-                <a href="{{ url('/index') }}" style="padding-right:3%">
+                <a href="{{ url('/') }}" style="padding-right:3%">
                     <img src="{{asset('images/logo.svg')}}" alt="" style="height:40px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

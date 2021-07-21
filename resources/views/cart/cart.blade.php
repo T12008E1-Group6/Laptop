@@ -71,7 +71,7 @@
                 </div>
                 <div class="row d-flex justify-content-end">
                     <div class="col-3">
-                        <a href="{{ route('checkout') }}" class="btn btn-success" id="checkoutBtn">Checkout</a>
+                        <a class="btn btn-success" id="btnCheckout">Checkout</a>
                         <h2 class="emptyCart hidden alert alert-warning">No Items in Cart</h2>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                 } else {
                     cart.plus_itemQty(itemId).render_itemSubtotal(itemId);
                 }
-                cart.render_cartTotalQty().render_cartTotalPrice();
+                cart.render_cartTotalQty().render_cartTotalPrice().saveChanges();
             });
         })
 
@@ -109,13 +109,22 @@
             var targetId = btnRemove.getAttribute('id');
             var itemId = targetId.slice(0, targetId.indexOf('__'));
             btnRemove.addEventListener('click', () => {
-                cart.remove(itemId).render_cartTotalQty().render_cartTotalPrice();
+                cart.remove(itemId).render_cartTotalQty().render_cartTotalPrice().saveChanges();
 
             })
         })
 
-        window.onbeforeunload = function() {
-            cart.save();
-        }
+        // window.onbeforeunload = async function() {
+        //     await cart.saveChanges();
+        //     return 'Your cart saved!';
+        // }
+
+        document.getElementById('btnCheckout').addEventListener('click', () => {
+            if (cart.sum_amount() > 99999999) {
+                window.alert('Total amount of cart cannot exceed 99.999.999 vnd!\nPlease remove some item from your cart and try again.')
+            } else {
+                window.location.href = '{{ route('checkout') }}';
+            }
+        })
     </script>
 @endsection

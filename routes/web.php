@@ -430,6 +430,7 @@ Route::get('/add-to-cart/{id}', 'CartController@getAddToCart')->name('cart.addTo
 Route::get('/cart', 'CartController@getCart')->name('cart.shoppingCart');
 Route::get('/remove-from-card/{id}', 'CartController@getRemoveFromCart')
     ->name('cart.removeFromCart');
+Route::post('/modify-cart', 'CartController@postModifiedCart')->name('cart.modify');
 
 Route::middleware('auth')->group(function () {
     Route::get('/checkout', 'CartController@getCheckout')->name('checkout');

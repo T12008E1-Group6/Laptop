@@ -1,7 +1,7 @@
 import { vnCurrency } from './utility.js';
 
 class Cart {
-    constructor ({cartItems}) {
+    constructor({ cartItems }) {
         this.cartItems = cartItems;
     }
 
@@ -10,7 +10,7 @@ class Cart {
         document.getElementById(itemId + '__groupItem__qty').value = this.cartItems[itemId].qty;
         return this;
     }
-    
+
     minus_itemQty(itemId) {
         if (this.cartItems[itemId].qty > 1) {
             this.cartItems[itemId].qty--;
@@ -20,7 +20,7 @@ class Cart {
         }
         return this;
     }
-    
+
 
     remove(itemId) {
         if (confirm('Do you want to remove this item?\nName is ' + this.cartItems[itemId]['item']['product_name'])) {
@@ -36,7 +36,7 @@ class Cart {
 
     sum_qty() {
         let totalQty = 0;
-        for(let itemId in this.cartItems) {
+        for (let itemId in this.cartItems) {
             totalQty += this.cartItems[itemId].qty;
         }
         return totalQty;
@@ -47,12 +47,12 @@ class Cart {
         return this;
     }
 
-    sum_itemPrice (itemId) {
+    sum_itemPrice(itemId) {
         return this.cartItems[itemId]['qty'] * this.cartItems[itemId]['item']['product_price'];
     }
 
-    render_itemSubtotal (itemId) {
-        document.getElementById(itemId + '__groupItemSubtotal').innerHTML = vnCurrency.format(this.sum_itemPrice (itemId));
+    render_itemSubtotal(itemId) {
+        document.getElementById(itemId + '__groupItemSubtotal').innerHTML = vnCurrency.format(this.sum_itemPrice(itemId));
         return this;
     }
 
@@ -69,9 +69,21 @@ class Cart {
         return this;
     }
 
-    save() {
-        let cartJSON = JSON.stringify(this);
-        document.cookie = "modifiedCart=" + cartJSON;
+    async saveChanges() {
+        // console.log(this.cartItems);
+        await fetch('http://localhost:8000/modify-cart', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.cartItems)
+        })
+            .then(result => {
+                console.log('cart saved')
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 }
 
